@@ -1,22 +1,24 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+﻿import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
+import tailwind from '@astrojs/tailwind';
 
-// https://astro.build/config
+const isTeacherSite = process.env.PUBLIC_SITE_MODE === 'teacher';
+
 export default defineConfig({
-  site: 'https://votre-site.netlify.app',
+  site: isTeacherSite 
+    ? 'https://python-teach-ekm.netlify.app'
+    : 'https://python-learn-ekm.netlify.app',
+  
   integrations: [
-    tailwind(),
-    mdx()
+    mdx(),
+    tailwind()
   ],
+  
   markdown: {
     shikiConfig: {
-      theme: 'github-dark',
+      theme: 'github-dark-dimmed',
+      langs: ['python', 'bash', 'javascript'],
       wrap: true
     }
-  },
-  output: 'static',
-  build: {
-    inlineStylesheets: 'auto'
   }
 });

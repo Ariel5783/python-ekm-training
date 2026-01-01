@@ -1,36 +1,28 @@
-[build]
+﻿[build]
   command = "npm run build"
   publish = "dist"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
+  
 [build.environment]
   NODE_VERSION = "20"
+  PUBLIC_SITE_MODE = "student"
 
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    X-Robots-Tag = "index, follow"
     X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    X-XSS-Protection = "1; mode=block"
 
 [[redirects]]
-  from = "/prof/*"
+  from = "/solutions/*"
   to = "/404"
   status = 404
   force = true
 
-# Configuration pour Netlify Forms
-# Les formulaires avec data-netlify="true" seront automatiquement détectés
-
-# Configuration pour Netlify Identity (optionnel)
-# Activer dans l'interface Netlify si besoin du Mode Professeur par Identity
+[[redirects]]
+  from = "/pedagogie/*"
+  to = "/404"
+  status = 404
+  force = true

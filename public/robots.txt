@@ -1,7 +1,2 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
-
-# Pages à ne pas indexer
-Disallow: /prof
-
-Sitemap: https://votre-site.netlify.app/sitemap.xml
