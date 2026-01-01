@@ -1,0 +1,35 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY   ::   Copie de fichiers robuste pour Windows     
+-------------------------------------------------------------------------------
+
+  DÇbutˇ: jeudi 1 janvier 2026 20:58:22
+   Source : C:\Users\PC\Documents\site-pedagogique-python\
+     Dest : C:\Users\PC\Documents\python-ekm-training\
+
+    Fichiers : *.*
+	    
+Fich. exclus : .env
+	    *.log
+	    
+RÇp. exclus : .git
+	    node_modules
+	    dist
+	    .astro
+	    .vscode
+	    .idea
+	    
+  Options : *.* /NDL /NFL /L /TEE /S /E /DCOPY:DA /COPY:DAT /NP /XJ /R:1 /W:1 
+
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+
+               Total     CopiÇ    IgnorÇDiscordance     êCHEC    Extras
+     RÇpˇ:        21        16         5         0         0         0
+Fichiersˇ:        53        53         0         0         0         1
+  Octetsˇ:   559.0 k   559.0 k         0         0         0         0
+   Heures:   0:00:00   0:00:00                       0:00:00   0:00:00
+   Finˇ: jeudi 1 janvier 2026 20:58:23
+

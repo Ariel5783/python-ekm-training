@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+
+const allExercices = await getCollection('exercices');
+const sortedExercices = allExercices.sort(
+  (a, b) => new Date(b.data.updated).getTime() - new Date(a.data.updated).getTime()
+);
+
+const breadcrumbItems = [
+  { label: 'Exercices' },
+];
+---
+
+<Layout title="Exercices">
+  <div class="container mx-auto px-4 py-12">
+    <Breadcrumb items={breadcrumbItems} />
+    
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-secondary-900 dark:text-secondary-50 mb-4">
+        Exercices de Python
+      </h1>
+      <p class="text-lg text-secondary-700 dark:text-secondary-300">
+        Séries d'exercices pour mettre en pratique vos connaissances. Mode défi disponible.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {sortedExercices.map((exercice) => (
+        <Card
+          title={exercice.data.title}
+          slug={exercice.slug}
+          level={exercice.data.level}
+          type="exercices"
+          duree={exercice.data.duree_estimee}
+          updated={exercice.data.updated}
+          objectifs={exercice.data.objectifs}
+        />
+      ))}
+    </div>
+
+    {sortedExercices.length === 0 && (
+      <div class="text-center py-12">
+        <svg class="w-16 h-16 mx-auto text-secondary-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+        <p class="text-lg text-secondary-600 dark:text-secondary-400">
+          Aucun exercice disponible pour le moment.
+        </p>
+      </div>
+    )}
+  </div>
+</Layout>

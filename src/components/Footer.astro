@@ -1,0 +1,39 @@
+---
+const currentYear = new Date().getFullYear();
+const nextYear = currentYear + 1;
+---
+
+<footer class="bg-secondary-100 dark:bg-secondary-800 border-t border-secondary-200 dark:border-secondary-700 mt-16 no-print">
+  <div class="container mx-auto px-4 py-8">
+    <div class="text-center space-y-2">
+      <p class="text-sm text-secondary-700 dark:text-secondary-300">
+        © {currentYear}–{nextYear} Eric MORMIN — Tous droits réservés
+      </p>
+      <p class="text-sm text-secondary-600 dark:text-secondary-400">
+        Édité par <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer" class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 underline">EKM Conseils</a> (www.ekmconseils.eu)
+      </p>
+      <p class="text-sm text-secondary-600 dark:text-secondary-400">
+        Ressource pédagogique réalisée pour La Salle Saint-Nicolas, Issy-les-Moulineaux
+      </p>
+      <p class="text-xs text-secondary-500 dark:text-secondary-500">
+        Bac Pro CIEL, BTS CIEL, BTS SIO
+      </p>
+    </div>
+
+    <div class="mt-6 pt-6 border-t border-secondary-200 dark:border-secondary-700">
+      <div class="flex flex-wrap justify-center items-center gap-4 text-sm">
+        <a href="/mentions" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400">
+          Mentions légales & Accessibilité
+        </a>
+        <span class="text-secondary-400 dark:text-secondary-600">•</span>
+        <a href="/apropos" class="text-secondary-600 hover:text-primary-600 dark:text-secondary-400 dark:hover:text-primary-400">
+          À propos
+        </a>
+        <span class="text-secondary-400 dark:text-secondary-600">•</span>
+        <span class="text-secondary-500 dark:text-secondary-500">
+          Version 1.0.0
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,370 @@
+---
+title: "Introduction aux variables en Python"
+level: ["Bac Pro CIEL", "BTS CIEL", "BTS SIO"]
+type: "cours"
+objectifs:
+  - "Comprendre le concept de variable en programmation"
+  - "Savoir déclarer et utiliser des variables en Python"
+  - "Identifier les différents types de données de base"
+  - "Utiliser les opérations de base sur les variables"
+prerequis:
+  - "Notions de base en informatique"
+  - "Installation de Python sur son poste"
+duree_estimee: "1h30"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["variables", "types de données", "python", "programmation", "bases"]
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## Introduction
+
+Les variables sont des éléments fondamentaux de tout langage de programmation. En Python, une variable permet de stocker des informations en mémoire pour les réutiliser plus tard dans votre programme.
+
+## Qu'est-ce qu'une variable ?
+
+Une **variable** est un espace de stockage dans la mémoire de l'ordinateur, identifié par un nom, qui permet de conserver une valeur. On peut comparer une variable à une boîte étiquetée dans laquelle on range des informations.
+
+### Déclaration d'une variable
+
+En Python, déclarer une variable est très simple. Il suffit de choisir un nom et de lui assigner une valeur avec le signe égal `=` :
+
+```python
+age = 18
+nom = "Alice"
+taille = 1.75
+est_etudiant = True
+```
+
+### Règles de nommage
+
+Les noms de variables en Python doivent respecter certaines règles :
+
+- Commencer par une lettre (a-z, A-Z) ou un underscore `_`
+- Contenir uniquement des lettres, chiffres et underscores
+- Ne pas être un mot-clé réservé de Python (`if`, `for`, `while`, etc.)
+- Être sensibles à la casse (`age` et `Age` sont différents)
+
+**Conventions de nommage (PEP 8) :**
+- Utiliser des minuscules avec des underscores pour séparer les mots : `mon_age`, `nom_complet`
+- Choisir des noms explicites et significatifs
+
+<InteractiveBlock
+  id="variables-naming"
+  title="À vous de jouer : Noms de variables"
+  type="text"
+  question="Parmi ces noms de variables, lesquels sont valides en Python ? Expliquez pourquoi."
+  placeholder="Exemple : '2nom' n'est pas valide car il commence par un chiffre..."
+/>
+
+## Les types de données de base
+
+Python propose plusieurs types de données de base :
+
+### 1. Les nombres entiers (int)
+
+Les nombres entiers sont des nombres sans décimale :
+
+```python
+age = 25
+annee = 2025
+temperature = -5
+```
+
+### 2. Les nombres à virgule flottante (float)
+
+Les nombres décimaux utilisent le point comme séparateur :
+
+```python
+taille = 1.75
+prix = 19.99
+temperature = -3.5
+```
+
+### 3. Les chaînes de caractères (str)
+
+Les chaînes de caractères représentent du texte, encadré par des guillemets simples ou doubles :
+
+```python
+prenom = "Alice"
+ville = 'Paris'
+message = "Bonjour tout le monde !"
+```
+
+### 4. Les booléens (bool)
+
+Les booléens ne peuvent prendre que deux valeurs : `True` (vrai) ou `False` (faux) :
+
+```python
+est_majeur = True
+a_permis = False
+```
+
+<InteractiveBlock
+  id="types-identification"
+  title="À vous de jouer : Identifier les types"
+  type="code"
+  question="Pour chaque variable ci-dessous, indiquez son type (int, float, str ou bool) :"
+  placeholder="# variable1 = 42
+# Type : int
+
+# variable2 = 'Python'
+# Type : ..."
+/>
+
+## Les opérations sur les variables
+
+### Opérations arithmétiques
+
+Python supporte les opérations mathématiques classiques :
+
+```python
+a = 10
+b = 3
+
+addition = a + b        # 13
+soustraction = a - b    # 7
+multiplication = a * b  # 30
+division = a / b        # 3.333...
+division_entiere = a // b  # 3
+modulo = a % b          # 1 (reste de la division)
+puissance = a ** b      # 1000
+```
+
+### Opérations sur les chaînes
+
+Les chaînes de caractères ont aussi leurs opérations :
+
+```python
+prenom = "Alice"
+nom = "Dupont"
+
+# Concaténation
+nom_complet = prenom + " " + nom  # "Alice Dupont"
+
+# Répétition
+separateur = "-" * 20  # "--------------------"
+
+# Longueur
+longueur = len(prenom)  # 5
+```
+
+<InteractiveBlock
+  id="operations-practice"
+  title="À vous de jouer : Exercice pratique"
+  type="code"
+  question="Créez un programme qui calcule le périmètre et l'aire d'un rectangle. Utilisez les variables longueur=5 et largeur=3."
+  placeholder="# Définir les variables
+longueur = 5
+largeur = 3
+
+# Calculer le périmètre
+
+# Calculer l'aire
+
+# Afficher les résultats
+"
+/>
+
+## La fonction `type()`
+
+Pour connaître le type d'une variable, utilisez la fonction `type()` :
+
+```python
+x = 42
+print(type(x))  # <class 'int'>
+
+y = 3.14
+print(type(y))  # <class 'float'>
+
+z = "Python"
+print(type(z))  # <class 'str'>
+```
+
+## Conversion de types
+
+Il est possible de convertir une variable d'un type à un autre :
+
+```python
+# Convertir en entier
+nombre = int("42")       # 42
+arrondi = int(3.7)       # 3
+
+# Convertir en float
+decimal = float("3.14")  # 3.14
+decimal2 = float(5)      # 5.0
+
+# Convertir en chaîne
+texte = str(42)          # "42"
+texte2 = str(3.14)       # "3.14"
+```
+
+<InteractiveBlock
+  id="conversions-qcm"
+  title="À vous de jouer : Quiz sur les conversions"
+  type="qcm"
+  question="Que retourne l'expression : int('42') + float('3.5') ?"
+  options={[
+    "45.5 (type float)",
+    "45 (type int)",
+    "Une erreur",
+    "'423.5' (type str)"
+  ]}
+/>
+
+## Affichage avec `print()`
+
+La fonction `print()` permet d'afficher des informations à l'écran :
+
+```python
+nom = "Alice"
+age = 20
+
+# Affichage simple
+print(nom)
+
+# Affichage multiple
+print(nom, age)
+
+# Formatage avec f-strings (Python 3.6+)
+print(f"Je m'appelle {nom} et j'ai {age} ans.")
+
+# Formatage avec .format()
+print("Je m'appelle {} et j'ai {} ans.".format(nom, age))
+```
+
+<InteractiveBlock
+  id="print-practice"
+  title="À vous de jouer : Affichage personnalisé"
+  type="code"
+  question="Créez un programme qui affiche une présentation personnalisée avec votre nom, âge et ville en utilisant des f-strings."
+  placeholder="# Définir les variables
+nom = '...'
+age = ...
+ville = '...'
+
+# Afficher la présentation
+
+"
+/>
+
+## Bonnes pratiques
+
+1. **Noms explicites** : Préférez `age_utilisateur` à `x`
+2. **Cohérence** : Suivez les conventions PEP 8
+3. **Éviter les variables globales** : Limitez la portée des variables
+4. **Initialisation** : Toujours initialiser une variable avant de l'utiliser
+5. **Commentaires** : Documentez les variables complexes
+
+## Résumé
+
+- Les variables stockent des informations en mémoire
+- Python propose 4 types de base : `int`, `float`, `str`, `bool`
+- Les opérations dépendent du type de données
+- La fonction `type()` identifie le type d'une variable
+- La conversion de types se fait avec `int()`, `float()`, `str()`
+- La fonction `print()` affiche des informations
+
+<TeacherOnly title="Corrigé et Barème">
+
+## Corrigé des exercices
+
+### Exercice : Noms de variables
+
+**Variables valides :**
+- `age` : valide
+- `nom_complet` : valide
+- `_variable` : valide (commence par underscore)
+- `variable2` : valide (contient un chiffre mais ne commence pas par un)
+
+**Variables invalides :**
+- `2nom` : invalide (commence par un chiffre)
+- `mon-age` : invalide (contient un tiret)
+- `for` : invalide (mot-clé réservé)
+- `mon age` : invalide (contient un espace)
+
+### Exercice : Identifier les types
+
+```python
+# variable1 = 42          → Type : int
+# variable2 = 'Python'    → Type : str
+# variable3 = 3.14        → Type : float
+# variable4 = True        → Type : bool
+# variable5 = "123"       → Type : str (attention aux guillemets)
+```
+
+### Exercice : Périmètre et aire
+
+```python
+# Définir les variables
+longueur = 5
+largeur = 3
+
+# Calculer le périmètre
+perimetre = 2 * (longueur + largeur)  # ou (longueur + largeur) * 2
+
+# Calculer l'aire
+aire = longueur * largeur
+
+# Afficher les résultats
+print(f"Périmètre : {perimetre} cm")
+print(f"Aire : {aire} cm²")
+```
+
+### Quiz : Conversions
+
+**Réponse correcte : 45.5 (type float)**
+
+Explication :
+- `int('42')` → 42 (entier)
+- `float('3.5')` → 3.5 (flottant)
+- 42 + 3.5 → 45.5 (Python convertit automatiquement en float)
+
+### Exercice : Affichage personnalisé
+
+```python
+# Définir les variables
+nom = 'Dupont'
+age = 18
+ville = 'Paris'
+
+# Afficher la présentation
+print(f"Bonjour, je m'appelle {nom}, j'ai {age} ans et j'habite à {ville}.")
+```
+
+## Barème (sur 20 points)
+
+- **Noms de variables** (4 points) : 1 point par identification correcte
+- **Identifier les types** (5 points) : 1 point par type correct
+- **Périmètre et aire** (5 points) :
+  - Variables définies : 1 point
+  - Calcul périmètre : 2 points
+  - Calcul aire : 1 point
+  - Affichage : 1 point
+- **Quiz conversions** (2 points)
+- **Affichage personnalisé** (4 points) :
+  - Variables définies : 1 point
+  - Utilisation f-string : 2 points
+  - Formatage correct : 1 point
+
+## Notes pédagogiques
+
+### Points d'attention
+- Insister sur la différence entre `=` (affectation) et `==` (comparaison)
+- Bien expliquer la différence entre `'42'` (chaîne) et `42` (entier)
+- Montrer l'importance du type lors des opérations
+
+### Exercices supplémentaires suggérés
+1. Créer un convertisseur de températures (Celsius ↔ Fahrenheit)
+2. Calculer la moyenne de trois notes
+3. Manipuler des chaînes : extraire prénom/nom d'un nom complet
+
+### Prolongements possibles
+- Les listes et dictionnaires
+- La portée des variables (scope)
+- Les constantes en Python
+- Les variables d'environnement
+
+</TeacherOnly>

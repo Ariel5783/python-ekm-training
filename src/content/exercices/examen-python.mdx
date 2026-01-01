@@ -1,0 +1,365 @@
+---
+title: "Examen : Programmation Python"
+level: ["Bac Pro CIEL", "BTS CIEL", "BTS SIO"]
+type: "exercices"
+objectifs:
+  - "Évaluer les compétences en Python"
+  - "Tester les connaissances sur les scripts de base"
+  - "Vérifier la maîtrise des fonctions et boucles"
+prerequis:
+  - "Bases de Python"
+  - "Fonctions et structures de contrôle"
+duree_estimee: "1h00"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["examen", "évaluation", "python", "fonctions"]
+mode_defi: true
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## Consignes générales
+
+<div class="alert alert-warning mb-6">
+  <div class="flex items-start">
+    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+    </svg>
+    <div>
+      <p class="font-medium">Important</p>
+      <ul class="text-sm mt-2 space-y-1">
+        <li>Durée : 1 heure</li>
+        <li>Respectez la syntaxe Python</li>
+        <li>Justifiez vos choix lorsque demandé</li>
+        <li>Testez votre code mentalement</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## Partie 1 : Scripts de base (6 points)
+
+### Question 1 : Bonjour (2 points)
+
+Écrire un script nommé `bonjour.py` qui affiche le message "Bonjour".
+
+**Exemple attendu :**
+```
+Sortie : Bonjour
+```
+
+<InteractiveBlock
+  id="q1-bonjour"
+  title="Votre code : bonjour.py"
+  type="code"
+  placeholder="# Fichier : bonjour.py
+
+
+"
+/>
+
+### Question 2 : Addition (4 points)
+
+Écrire un script nommé `addition.py` qui :
+- Demande à l'utilisateur d'entrer deux nombres entiers
+- Affiche la somme de ces deux nombres
+
+**Exemple d'exécution :**
+```
+Entrez le premier nombre : 5
+Entrez le deuxième nombre : 7
+La somme est : 12
+```
+
+<InteractiveBlock
+  id="q2-addition"
+  title="Votre code : addition.py"
+  type="code"
+  placeholder="# Fichier : addition.py
+
+
+"
+/>
+
+<TeacherOnly title="Corrigé Partie 1">
+
+### Question 1 : Bonjour (2 points)
+
+```python
+# Fichier : bonjour.py
+print("Bonjour")
+```
+
+**Barème** :
+- `print("Bonjour")` correct : 2 points
+- Toute autre méthode fonctionnelle : 1.5 point
+
+---
+
+### Question 2 : Addition (4 points)
+
+```python
+# Fichier : addition.py
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+somme = a + b
+print(f"La somme est : {somme}")
+```
+
+**Barème** :
+- Lecture des deux entrées avec `input()` et conversion `int()` : 1.5 point
+- Calcul de la somme : 1 point
+- Affichage correct du résultat : 1.5 point
+
+**Erreurs courantes** :
+- Oubli de `int()` → Variables en string
+- Pas de message dans `input()`
+- Affichage sans formatage
+
+</TeacherOnly>
+
+## Partie 2 : Fonctions mathématiques (8 points)
+
+### Question 3 : Factorielle (4 points)
+
+Écrire une fonction `fac(n)` qui calcule la factorielle d'un nombre entier positif `n`.
+- La fonction doit retourner la valeur de la factorielle
+- Vous pouvez utiliser une boucle `for` ou la récursivité
+
+**Rappel** : n! = 1 × 2 × 3 × ... × n
+
+**Exemple :**
+```python
+fac(5)  # retourne 120
+fac(0)  # retourne 1
+```
+
+<InteractiveBlock
+  id="q3-factorielle"
+  title="Votre code"
+  type="code"
+  placeholder="def fac(n):
+    # Votre code ici
+    pass
+
+# Tests
+print(fac(5))
+print(fac(0))
+"
+/>
+
+### Question 4 : PGCD (4 points)
+
+Écrire une fonction `pgcd(a, b)` qui calcule et retourne le plus grand commun diviseur de deux nombres entiers `a` et `b`.
+- Utilisez l'algorithme d'Euclide
+
+**Exemple :**
+```python
+pgcd(10, 4)   # retourne 2
+pgcd(48, 18)  # retourne 6
+```
+
+<InteractiveBlock
+  id="q4-pgcd"
+  title="Votre code"
+  type="code"
+  placeholder="def pgcd(a, b):
+    # Votre code ici
+    pass
+
+# Tests
+print(pgcd(10, 4))
+print(pgcd(48, 18))
+"
+/>
+
+<TeacherOnly title="Corrigé Partie 2">
+
+### Question 3 : Factorielle (4 points)
+
+**Solution 1 : Avec boucle**
+```python
+def fac(n):
+    if n == 0:
+        return 1
+    resultat = 1
+    for i in range(1, n + 1):
+        resultat *= i
+    return resultat
+```
+
+**Solution 2 : Récursive**
+```python
+def fac(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * fac(n - 1)
+```
+
+**Barème** :
+- Définition correcte de la fonction : 0.5 point
+- Gestion du cas n=0 : 1 point
+- Boucle ou récursion correcte : 2 points
+- Return du résultat : 0.5 point
+
+**Points importants** :
+- 0! = 1 (cas particulier)
+- Boucle doit aller de 1 à n inclus
+- Récursion nécessite condition d'arrêt
+
+---
+
+### Question 4 : PGCD (4 points)
+
+```python
+def pgcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+```
+
+**Barème** :
+- Définition correcte de la fonction : 0.5 point
+- Utilisation de l'algorithme d'Euclide : 2.5 points
+- Return du résultat : 0.5 point
+- Fonction testée et opérationnelle : 0.5 point
+
+**Algorithme d'Euclide** :
+1. Tant que b ≠ 0
+2. Remplacer (a, b) par (b, a mod b)
+3. Retourner a
+
+**Variante possible** :
+```python
+def pgcd(a, b):
+    if b == 0:
+        return a
+    return pgcd(b, a % b)
+```
+
+</TeacherOnly>
+
+## Partie 3 : Conditions et boucles (6 points)
+
+### Question 5 : Pair ou Impair (3 points)
+
+Écrire un script qui demande un nombre entier à l'utilisateur et indique si ce nombre est pair ou impair.
+
+**Exemple d'exécution :**
+```
+Entrez un nombre : 8
+Le nombre est pair.
+```
+
+<InteractiveBlock
+  id="q5-parite"
+  title="Votre code"
+  type="code"
+  placeholder="# Fichier : pair_ou_impair.py
+
+
+"
+/>
+
+### Question 6 : Maximum de deux nombres (3 points)
+
+Écrire un script qui demande deux nombres entiers à l'utilisateur et affiche le plus grand des deux.
+
+**Exemple d'exécution :**
+```
+Entrez le premier nombre : 7
+Entrez le deuxième nombre : 10
+Le plus grand nombre est : 10
+```
+
+<InteractiveBlock
+  id="q6-maximum"
+  title="Votre code"
+  type="code"
+  placeholder="# Fichier : maximum.py
+
+
+"
+/>
+
+<TeacherOnly title="Corrigé Partie 3">
+
+### Question 5 : Pair ou Impair (3 points)
+
+```python
+# Fichier : pair_ou_impair.py
+n = int(input("Entrez un nombre : "))
+
+if n % 2 == 0:
+    print("Le nombre est pair.")
+else:
+    print("Le nombre est impair.")
+```
+
+**Barème** :
+- Lecture de l'entrée avec conversion : 0.5 point
+- Test modulo 2 correct : 1.5 point
+- Affichage correct : 1 point
+
+**Points clés** :
+- `n % 2 == 0` teste la divisibilité par 2
+- Un nombre est pair si le reste de la division par 2 est 0
+
+---
+
+### Question 6 : Maximum de deux nombres (3 points)
+
+**Solution 1 : Avec if/else**
+```python
+# Fichier : maximum.py
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+
+if a > b:
+    print(f"Le plus grand nombre est : {a}")
+else:
+    print(f"Le plus grand nombre est : {b}")
+```
+
+**Solution 2 : Avec fonction max()**
+```python
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+maximum = max(a, b)
+print(f"Le plus grand nombre est : {maximum}")
+```
+
+**Solution 3 : Avec opérateur ternaire**
+```python
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+maximum = a if a > b else b
+print(f"Le plus grand nombre est : {maximum}")
+```
+
+**Barème** :
+- Lecture des deux entrées : 1 point
+- Comparaison correcte : 1 point
+- Affichage du maximum : 1 point
+
+**Note** : Toutes les solutions sont acceptées si elles fonctionnent
+
+</TeacherOnly>
+
+## Barème global (sur 20 points)
+
+| Partie | Points |
+|--------|--------|
+| Partie 1 : Scripts de base | 6 points |
+| Partie 2 : Fonctions mathématiques | 8 points |
+| Partie 3 : Conditions et boucles | 6 points |
+| **Total** | **20 points** |
+
+## Instructions finales
+
+- Relisez votre travail pour éviter les erreurs de syntaxe
+- Soyez clair et précis dans votre écriture
+- Testez mentalement votre code avant de valider
+
+**Bon courage ! 💪**

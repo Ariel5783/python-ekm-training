@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const breadcrumbItems = [
+  { label: 'À propos' },
+];
+---
+
+<Layout title="À propos">
+  <div class="container mx-auto px-4 py-12">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-secondary-900 dark:text-secondary-50 mb-8">
+        À propos de Python Pédagogique
+      </h1>
+
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <section class="mb-12">
+          <h2>Présentation</h2>
+          <p>
+            Python Pédagogique est une plateforme de ressources éducatives destinée aux apprenants
+            de la filière CIEL (Cybersécurité, Informatique et réseaux, Électronique).
+          </p>
+          <p>
+            Ce site propose des cours participatifs, des exercices pratiques et des ressources
+            complémentaires pour accompagner l'apprentissage de la programmation Python.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>La Salle Saint-Nicolas</h2>
+          <p>
+            La Salle Saint-Nicolas est un établissement d'enseignement situé à Issy-les-Moulineaux,
+            proposant des formations professionnelles et technologiques de qualité.
+          </p>
+          <p>
+            L'établissement forme des jeunes aux métiers de l'informatique, des réseaux,
+            de l'électronique et de la cybersécurité à travers les diplômes :
+          </p>
+          <ul>
+            <li>Bac Pro CIEL (Cybersécurité, Informatique et réseaux, Électronique)</li>
+            <li>BTS CIEL (Cybersécurité, Informatique et réseaux, Électronique)</li>
+          </ul>
+        </section>
+
+        <section class="mb-12">
+          <h2>EKM Conseils</h2>
+          <p>
+            EKM Conseils est un cabinet de conseil et de formation spécialisé dans les domaines
+            de l'informatique, des réseaux et de la programmation.
+          </p>
+          <p>
+            Le cabinet accompagne les établissements d'enseignement dans la création de ressources
+            pédagogiques numériques et la formation des enseignants, notamment sur
+            <strong>l'intégration de l'intelligence artificielle dans la pratique pédagogique</strong>.
+          </p>
+          <p>
+            Site web : <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer">www.ekmconseils.eu</a>
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Fonctionnalités du site</h2>
+          <ul>
+            <li>
+              <strong>Cours participatifs</strong> : Des cours interactifs avec des zones de saisie
+              pour permettre aux apprenants de prendre des notes et de répondre aux questions directement
+              dans le navigateur.
+            </li>
+            <li>
+              <strong>Exercices pratiques</strong> : Des séries d'exercices gradués pour mettre en
+              pratique les concepts étudiés.
+            </li>
+            <li>
+              <strong>Sauvegarde automatique</strong> : Toutes les réponses sont sauvegardées
+              automatiquement dans le navigateur de l'apprenant.
+            </li>
+            <li>
+              <strong>Export des réponses</strong> : Possibilité d'exporter ses réponses au format
+              JSON pour les conserver ou les partager avec l'enseignant.
+            </li>
+            <li>
+              <strong>Mode Professeur</strong> : Accès sécurisé aux corrigés et barèmes pour les
+              enseignants.
+            </li>
+            <li>
+              <strong>Mode sombre</strong> : Interface adaptable pour un confort de lecture optimal.
+            </li>
+          </ul>
+        </section>
+
+        <section class="mb-12">
+          <h2>Accessibilité</h2>
+          <p>
+            Ce site est conçu pour être accessible au plus grand nombre, conformément aux standards
+            WCAG 2.1 niveau AA. Nous nous efforçons de garantir :
+          </p>
+          <ul>
+            <li>Une navigation claire et cohérente</li>
+            <li>Un contraste suffisant pour la lisibilité</li>
+            <li>Une compatibilité avec les lecteurs d'écran</li>
+            <li>Une navigation complète au clavier</li>
+            <li>Des formulaires accessibles et labellisés</li>
+          </ul>
+          <p>
+            Si vous rencontrez des difficultés d'accessibilité, n'hésitez pas à nous contacter.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Contact</h2>
+          <p>
+            Pour toute question ou suggestion concernant ce site, vous pouvez contacter :
+          </p>
+          <div class="bg-secondary-100 dark:bg-secondary-800 rounded-lg p-6 my-4">
+            <p class="mb-2">
+              <strong>Eric MORMIN</strong><br />
+              EKM Conseils
+            </p>
+            <p>
+              Site web : <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer">www.ekmconseils.eu</a>
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Crédits</h2>
+          <p>
+            <strong>Conception et développement :</strong> Eric MORMIN - EKM Conseils<br />
+            <strong>Établissement :</strong> La Salle Saint-Nicolas, Issy-les-Moulineaux<br />
+            <strong>Technologies :</strong> Astro, Tailwind CSS, Netlify
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>

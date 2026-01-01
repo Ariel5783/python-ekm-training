@@ -1,0 +1,193 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const breadcrumbItems = [
+  { label: 'Mentions légales & Accessibilité' },
+];
+---
+
+<Layout title="Mentions légales & Accessibilité" noIndex={true}>
+  <div class="container mx-auto px-4 py-12">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold text-secondary-900 dark:text-secondary-50 mb-8">
+        Mentions légales & Accessibilité
+      </h1>
+
+      <div class="prose prose-lg dark:prose-invert max-w-none">
+        <section class="mb-12">
+          <h2>Éditeur du site</h2>
+          <div class="bg-secondary-100 dark:bg-secondary-800 rounded-lg p-6 my-4">
+            <p>
+              <strong>EKM Conseils</strong><br />
+              Représenté par Eric MORMIN<br />
+              Site web : <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer">www.ekmconseils.eu</a>
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Établissement partenaire</h2>
+          <div class="bg-secondary-100 dark:bg-secondary-800 rounded-lg p-6 my-4">
+            <p>
+              <strong>La Salle Saint-Nicolas</strong><br />
+              Issy-les-Moulineaux<br />
+              Établissement d'enseignement professionnel et technologique
+            </p>
+          </div>
+        </section>
+
+        <section class="mb-12">
+          <h2>Hébergement</h2>
+          <p>
+            Ce site est hébergé par Netlify, Inc.<br />
+            2325 3rd Street, Suite 296<br />
+            San Francisco, California 94107<br />
+            États-Unis
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Propriété intellectuelle</h2>
+          <p>
+            L'ensemble du contenu de ce site (textes, images, vidéos, code source) est la propriété
+            d'Eric MORMIN et d'EKM Conseils, sauf mention contraire.
+          </p>
+          <p>
+            <strong>© 2025–2026 Eric MORMIN — Tous droits réservés</strong>
+          </p>
+          <p>
+            Toute reproduction, distribution, modification ou utilisation du contenu, en tout ou partie,
+            sans autorisation écrite préalable est strictement interdite, sauf dans le cadre d'un usage
+            pédagogique dans les établissements partenaires.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Protection des données personnelles</h2>
+          <p>
+            Ce site ne collecte aucune donnée personnelle de manière automatique.
+          </p>
+          <h3>Données stockées localement</h3>
+          <p>
+            Les réponses aux exercices et cours participatifs sont stockées uniquement dans le
+            navigateur de l'utilisateur (localStorage). Ces données ne sont jamais transmises
+            à nos serveurs, sauf si l'utilisateur choisit explicitement de soumettre un formulaire.
+          </p>
+          <h3>Formulaires de soumission (optionnel)</h3>
+          <p>
+            Si vous utilisez la fonctionnalité de soumission des réponses via Netlify Forms,
+            les données suivantes peuvent être collectées :
+          </p>
+          <ul>
+            <li>Nom et classe (si renseignés)</li>
+            <li>Réponses aux exercices</li>
+            <li>Page concernée</li>
+            <li>Date de soumission</li>
+          </ul>
+          <p>
+            Ces données sont utilisées uniquement à des fins pédagogiques et ne sont pas partagées
+            avec des tiers.
+          </p>
+          <h3>Cookies</h3>
+          <p>
+            Ce site utilise uniquement des cookies techniques nécessaires au fonctionnement :
+          </p>
+          <ul>
+            <li>Préférence de thème (clair/sombre)</li>
+            <li>Sauvegarde des réponses aux exercices</li>
+            <li>Authentification du mode professeur</li>
+          </ul>
+          <p>
+            Aucun cookie de suivi ou de publicité n'est utilisé.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Accessibilité numérique</h2>
+          <p>
+            EKM Conseils s'engage à rendre ce site accessible conformément aux standards WCAG 2.1
+            niveau AA.
+          </p>
+          <h3>État de conformité</h3>
+          <p>
+            Ce site est <strong>partiellement conforme</strong> avec le RGAA 4.1 (Référentiel Général
+            d'Amélioration de l'Accessibilité) et les WCAG 2.1 niveau AA.
+          </p>
+          <h3>Fonctionnalités d'accessibilité</h3>
+          <ul>
+            <li>Navigation au clavier complète</li>
+            <li>Contraste des couleurs conforme (ratio minimum 4.5:1)</li>
+            <li>Textes alternatifs pour les images</li>
+            <li>Formulaires labellisés et accessibles</li>
+            <li>Structure sémantique HTML5</li>
+            <li>Mode sombre disponible</li>
+            <li>Polices système pour une meilleure lisibilité</li>
+          </ul>
+          <h3>Technologies utilisées</h3>
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3 (Tailwind CSS)</li>
+            <li>JavaScript (ES6+)</li>
+            <li>ARIA (Accessible Rich Internet Applications)</li>
+          </ul>
+          <h3>Signaler un problème d'accessibilité</h3>
+          <p>
+            Si vous rencontrez un obstacle qui vous empêche d'accéder à un contenu ou à une
+            fonctionnalité du site, merci de nous le signaler via le site
+            <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer">www.ekmconseils.eu</a>.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Limitation de responsabilité</h2>
+          <p>
+            Les informations contenues sur ce site sont fournies à titre éducatif et pédagogique.
+            EKM Conseils s'efforce de maintenir ces informations à jour et exactes, mais ne peut
+            garantir l'exhaustivité ou l'exactitude du contenu.
+          </p>
+          <p>
+            EKM Conseils ne saurait être tenu responsable des dommages directs ou indirects résultant
+            de l'utilisation de ce site ou de l'impossibilité de l'utiliser.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Liens externes</h2>
+          <p>
+            Ce site peut contenir des liens vers des sites externes. EKM Conseils n'a aucun contrôle
+            sur le contenu de ces sites et décline toute responsabilité quant à leur contenu.
+          </p>
+        </section>
+
+        <section class="mb-12">
+          <h2>Droit applicable</h2>
+          <p>
+            Les présentes mentions légales sont soumises au droit français. Tout litige relatif à
+            l'utilisation de ce site sera de la compétence exclusive des tribunaux français.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Pour toute question concernant ces mentions légales ou l'accessibilité du site :
+          </p>
+          <div class="bg-secondary-100 dark:bg-secondary-800 rounded-lg p-6 my-4">
+            <p>
+              <strong>Eric MORMIN</strong><br />
+              EKM Conseils<br />
+              Site web : <a href="https://www.ekmconseils.eu" target="_blank" rel="noopener noreferrer">www.ekmconseils.eu</a>
+            </p>
+          </div>
+        </section>
+
+        <div class="mt-12 pt-8 border-t border-secondary-200 dark:border-secondary-700 text-sm text-secondary-600 dark:text-secondary-400">
+          <p>Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

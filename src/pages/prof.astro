@@ -1,0 +1,226 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+
+const breadcrumbItems = [
+  { label: 'Mode Professeur' },
+];
+---
+
+<Layout title="Mode Professeur" noIndex={true}>
+  <div class="container mx-auto px-4 py-12">
+    <Breadcrumb items={breadcrumbItems} />
+
+    <div class="max-w-md mx-auto">
+      <div class="card p-8">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+            </svg>
+          </div>
+          <h1 class="text-2xl font-bold text-secondary-900 dark:text-secondary-50 mb-2">
+            Mode Professeur
+          </h1>
+          <p class="text-sm text-secondary-600 dark:text-secondary-400">
+            Accédez aux corrigés et barèmes
+          </p>
+        </div>
+
+        <!-- Statut actuel -->
+        <div id="current-status" class="mb-6">
+          <!-- Sera rempli par JavaScript -->
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <form id="teacher-auth-form" class="space-y-4">
+          <div>
+            <label for="password" class="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
+              Mot de passe enseignant
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="input-field"
+              placeholder="Entrez le mot de passe"
+              required
+            />
+          </div>
+
+          <div id="error-message" class="hidden alert alert-error">
+            <!-- Message d'erreur -->
+          </div>
+
+          <button type="submit" class="btn-primary w-full">
+            Activer le mode professeur
+          </button>
+        </form>
+
+        <!-- Informations -->
+        <div class="mt-6 pt-6 border-t border-secondary-200 dark:border-secondary-700">
+          <div class="alert alert-info">
+            <div class="flex items-start">
+              <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+              </svg>
+              <div class="text-sm">
+                <p class="font-medium mb-1">Fonctionnalités du mode professeur :</p>
+                <ul class="list-disc list-inside space-y-1 text-xs">
+                  <li>Accès aux corrigés détaillés</li>
+                  <li>Barèmes de notation</li>
+                  <li>Notes pédagogiques</li>
+                </ul>
+                <p class="mt-2 text-xs">
+                  Le mode professeur reste actif sur cet appareil jusqu'à déconnexion.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bouton de déconnexion (masqué par défaut) -->
+        <button
+          id="logout-btn"
+          class="hidden btn-secondary w-full mt-4"
+        >
+          Se déconnecter du mode professeur
+        </button>
+      </div>
+
+      <!-- Informations pour les administrateurs -->
+      <div class="mt-8 text-center text-sm text-secondary-600 dark:text-secondary-400">
+        <p>
+          Pour configurer le mot de passe, définissez la variable d'environnement
+          <code class="px-2 py-1 bg-secondary-100 dark:bg-secondary-800 rounded">TEACHER_PWD</code>
+          dans Netlify.
+        </p>
+        <p class="mt-2">
+          Ou activez Netlify Identity avec le rôle "teacher".
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Configuration
+  const TEACHER_PASSWORD_HASH = import.meta.env.PUBLIC_TEACHER_PWD_HASH || '';
+  
+  // Hash simple (SHA-256)
+  async function hashPassword(password: string): Promise<string> {
+    const msgBuffer = new TextEncoder().encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  // Éléments du DOM
+  const form = document.getElementById('teacher-auth-form') as HTMLFormElement;
+  const passwordInput = document.getElementById('password') as HTMLInputElement;
+  const errorMessage = document.getElementById('error-message');
+  const currentStatus = document.getElementById('current-status');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  // Vérifier le statut actuel
+  function checkStatus() {
+    const isTeacher = localStorage.getItem('isTeacher') === 'true';
+    
+    if (currentStatus) {
+      if (isTeacher) {
+        currentStatus.innerHTML = `
+          <div class="alert alert-success">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Mode professeur actif</p>
+                <p class="text-sm mt-1">Vous avez accès à tous les contenus réservés.</p>
+              </div>
+            </div>
+          </div>
+        `;
+        form.classList.add('hidden');
+        logoutBtn?.classList.remove('hidden');
+      } else {
+        currentStatus.innerHTML = `
+          <div class="alert alert-warning">
+            <div class="flex items-center">
+              <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+              <div>
+                <p class="font-medium">Mode professeur inactif</p>
+                <p class="text-sm mt-1">Connectez-vous pour accéder aux corrigés.</p>
+              </div>
+            </div>
+          </div>
+        `;
+        form.classList.remove('hidden');
+        logoutBtn?.classList.add('hidden');
+      }
+    }
+  }
+
+  // Soumettre le formulaire
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const password = passwordInput.value;
+    
+    if (!password) {
+      showError('Veuillez entrer un mot de passe.');
+      return;
+    }
+
+    try {
+      // Hasher le mot de passe
+      const hash = await hashPassword(password);
+      
+      // Vérifier le hash (si configuré)
+      if (TEACHER_PASSWORD_HASH && hash === TEACHER_PASSWORD_HASH) {
+        // Authentification réussie
+        localStorage.setItem('isTeacher', 'true');
+        localStorage.setItem('teacherAuthTime', new Date().toISOString());
+        
+        // Rediriger vers l'accueil
+        window.location.href = '/';
+      } else if (!TEACHER_PASSWORD_HASH) {
+        // Mode développement : accepter n'importe quel mot de passe
+        showError('Configuration manquante : définissez PUBLIC_TEACHER_PWD_HASH dans les variables d\'environnement.');
+      } else {
+        // Mot de passe incorrect
+        showError('Mot de passe incorrect.');
+        passwordInput.value = '';
+      }
+    } catch (error) {
+      showError('Une erreur est survenue lors de l\'authentification.');
+      console.error(error);
+    }
+  });
+
+  // Déconnexion
+  logoutBtn?.addEventListener('click', () => {
+    if (confirm('Voulez-vous vraiment vous déconnecter du mode professeur ?')) {
+      localStorage.removeItem('isTeacher');
+      localStorage.removeItem('teacherAuthTime');
+      checkStatus();
+    }
+  });
+
+  // Afficher un message d'erreur
+  function showError(message: string) {
+    if (errorMessage) {
+      errorMessage.textContent = message;
+      errorMessage.classList.remove('hidden');
+      
+      setTimeout(() => {
+        errorMessage.classList.add('hidden');
+      }, 5000);
+    }
+  }
+
+  // Vérifier le statut au chargement
+  checkStatus();
+</script>
