@@ -1,107 +1,60 @@
 ---
-const isTeacher = import.meta.env.PUBLIC_SITE_MODE === 'teacher';
-const currentPath = Astro.url.pathname;
+const siteMode = import.meta.env.PUBLIC_SITE_MODE || 'student';
+const isTeacher = siteMode === 'teacher';
 ---
 
-<nav class="bg-ekm-slate-800 border-b border-ekm-slate-700 sticky top-0 z-50">
-  <div class="container mx-auto px-4">
+<nav class="bg-slate-900 border-b border-slate-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      
-      <a href="/" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-        <div class="w-10 h-10 bg-ekm-teal-500 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-xl">P</span>
-        </div>
+      <!-- Logo et titre -->
+      <a href="/" class="flex items-center space-x-3">
+        <img 
+          src="/images/logo-ekm-conseils-v02.png" 
+          alt="EKM Conseils" 
+          class="h-10 w-auto"
+        />
         <div class="flex flex-col">
-          <span class="text-white font-bold text-lg leading-tight">Python</span>
-          <span class="text-ekm-teal-400 text-xs leading-tight">by EKM Conseils</span>
+          <span class="text-white font-bold text-lg">Python</span>
+          <span class="text-cyan-400 text-xs">by EKM Conseils</span>
         </div>
       </a>
 
-      <div class="hidden md:flex items-center gap-6">
-        <a 
-          href="/cours"
-          class:list={[
-            "text-white hover:text-ekm-teal-400 transition-colors font-medium",
-            currentPath.startsWith('/cours') && "text-ekm-teal-400"
-          ]}
-        >
+      <!-- Navigation principale -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/cours" class="text-gray-300 hover:text-white transition-colors">
           Cours
         </a>
-        
-        <a 
-          href="/exercices"
-          class:list={[
-            "text-white hover:text-ekm-teal-400 transition-colors font-medium",
-            currentPath.startsWith('/exercices') && "text-ekm-teal-400"
-          ]}
-        >
+        <a href="/exercices" class="text-gray-300 hover:text-white transition-colors">
           Exercices
         </a>
-        
-        <a 
-          href="/projets"
-          class:list={[
-            "text-white hover:text-ekm-teal-400 transition-colors font-medium",
-            currentPath.startsWith('/projets') && "text-ekm-teal-400"
-          ]}
-        >
+        <a href="/projets" class="text-gray-300 hover:text-white transition-colors">
           Projets
         </a>
-        
-        <a 
-          href="/methodologie"
-          class:list={[
-            "text-white hover:text-ekm-teal-400 transition-colors font-medium",
-            currentPath.startsWith('/methodologie') && "text-ekm-teal-400"
-          ]}
-        >
+        <a href="/methodologie" class="text-gray-300 hover:text-white transition-colors">
           Méthodologie
         </a>
-
+        
         {isTeacher && (
           <>
-            <div class="h-6 w-px bg-ekm-slate-600"></div>
-            
-            <a 
-              href="/solutions"
-              class:list={[
-                "text-amber-400 hover:text-amber-300 transition-colors font-medium",
-                currentPath.startsWith('/solutions') && "text-amber-300 font-bold"
-              ]}
-            >
+            <a href="/solutions" class="text-amber-400 hover:text-amber-300 transition-colors">
               Solutions
             </a>
-            
-            <a 
-              href="/pedagogie"
-              class:list={[
-                "text-amber-400 hover:text-amber-300 transition-colors font-medium",
-                currentPath.startsWith('/pedagogie') && "text-amber-300 font-bold"
-              ]}
-            >
+            <a href="/pedagogie" class="text-amber-400 hover:text-amber-300 transition-colors">
               Pédagogie
             </a>
           </>
         )}
-
-        <a 
-          href="/a-propos"
-          class="text-ekm-slate-300 hover:text-white transition-colors text-sm"
-        >
+        
+        <a href="/a-propos" class="text-gray-300 hover:text-white transition-colors">
           À propos
         </a>
-      </div>
-
-      {isTeacher && (
-        <div class="hidden md:block">
-          <span class="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-500/50 rounded-full text-amber-400 text-xs font-medium">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+        
+        {isTeacher && (
+          <span class="px-3 py-1 bg-amber-500 text-slate-900 text-xs font-semibold rounded-full">
             Espace Professeurs
           </span>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   </div>
 </nav>
