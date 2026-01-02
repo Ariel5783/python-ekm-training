@@ -1,0 +1,404 @@
+---
+title: "Exercices : Python de base"
+level: ["Bac Pro CIEL", "BTS CIEL", "BTS SIO"]
+type: "exercices"
+objectifs:
+  - "Créer des scripts Python simples"
+  - "Manipuler les entrées/sorties"
+  - "Utiliser les fonctions et les boucles"
+prerequis:
+  - "Installation de Python"
+  - "Connaître les bases de Python"
+duree_estimee: "2h00"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["python", "bases", "fonctions", "boucles", "input"]
+mode_defi: true
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## Travail à faire
+
+Cette série d'exercices couvre les bases de Python : scripts simples, entrées/sorties, fonctions mathématiques et structures de contrôle.
+
+<div class="alert alert-info mb-6 no-print">
+  <div class="flex items-start">
+    <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+    </svg>
+    <div>
+      <p class="font-medium">Consignes importantes</p>
+      <ul class="text-sm mt-2 space-y-1">
+        <li>Nommer vos fichiers correctement</li>
+        <li>Tester vos scripts avant de les soumettre</li>
+        <li>Ajouter des commentaires dans votre code</li>
+        <li>Remettre les fichiers au format .py</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+## 1. Scripts de base
+
+### Exercice 1 : Script vide (1 point)
+
+Créer un fichier nommé `rien.py` qui ne fait rien lorsqu'il est exécuté.
+
+<InteractiveBlock
+  id="ex1-script-vide"
+  title="Votre code : rien.py"
+  type="code"
+  placeholder="# Fichier : rien.py
+
+
+"
+/>
+
+### Exercice 2 : Bonjour (1 point)
+
+Créer un fichier nommé `bonjour.py` qui affiche le message "Bonjour".
+
+<InteractiveBlock
+  id="ex2-bonjour"
+  title="Votre code : bonjour.py"
+  type="code"
+  placeholder="# Fichier : bonjour.py
+
+
+"
+/>
+
+<TeacherOnly title="Corrigés Exercices 1 et 2">
+
+## Exercice 1 : Script vide
+
+```python
+# Fichier : rien.py
+pass
+```
+
+**Explications** :
+- Le mot-clé `pass` est une instruction qui ne fait rien
+- Utile comme "bouchon" pour du code à développer plus tard
+- Le fichier ne produit aucun résultat lorsqu'il est exécuté
+
+**Barème (1 point)** :
+- Fichier créé avec pass ou vide : 1 point
+
+---
+
+## Exercice 2 : Bonjour
+
+```python
+# Fichier : bonjour.py
+print("Bonjour")
+```
+
+**Explications** :
+- La fonction `print()` affiche un message à l'écran
+- Ici, elle affiche simplement "Bonjour"
+
+**Barème (1 point)** :
+- print("Bonjour") correct : 1 point
+
+</TeacherOnly>
+
+## 2. Manipulation des entrées/sorties
+
+### Exercice 3 : Addition (3 points)
+
+Créer un script `addition.py` qui :
+- Demande deux entiers à l'utilisateur
+- Affiche leur somme
+
+**Exemple** :
+```
+Entrez i1 : 89  
+Entrez i2 : 12  
+i1 + i2 = 101
+```
+
+<InteractiveBlock
+  id="ex3-addition"
+  title="Votre code : addition.py"
+  type="code"
+  placeholder="# Fichier : addition.py
+
+# Lecture des entrées
+
+
+# Calcul de la somme
+
+
+# Affichage du résultat
+
+
+"
+/>
+
+<TeacherOnly title="Corrigé Exercice 3">
+
+## Exercice 3 : Addition
+
+```python
+# Fichier : addition.py
+i1 = int(input("Entrez i1 : "))  # Lit le premier entier
+i2 = int(input("Entrez i2 : "))  # Lit le deuxième entier
+somme = i1 + i2  # Calcule la somme
+print(f"{i1} + {i2} = {somme}")  # Affiche le résultat
+```
+
+**Explications** :
+1. `input()` permet de lire des données au clavier sous forme de texte
+2. `int()` convertit le texte en entier
+3. La somme est calculée avec l'opérateur `+`
+4. Le résultat est affiché avec une f-string
+
+**Barème (3 points)** :
+- Lecture des deux entiers avec input() : 1 point
+- Calcul de la somme : 0.5 point
+- Affichage formaté correct : 1.5 point
+
+</TeacherOnly>
+
+## 3. Fonctions mathématiques
+
+### Exercice 4 : Factorielle (4 points)
+
+Écrire une fonction `fac(n)` qui calcule la factorielle d'un nombre entier positif `n`.
+
+**Exemple** :
+```python
+fac(5) retourne 120
+```
+
+**Rappel** : n! = 1 × 2 × 3 × ... × n
+
+<InteractiveBlock
+  id="ex4-factorielle"
+  title="Votre code : factorielle.py"
+  type="code"
+  placeholder="# Fichier : factorielle.py
+
+def fac(n):
+    # Votre code ici
+    pass
+
+# Tests
+print(fac(5))
+print(fac(0))
+print(fac(10))
+"
+/>
+
+### Exercice 5 : PGCD (4 points)
+
+Écrire une fonction `pgcd(a, b)` qui retourne le PGCD de deux nombres entiers `a` et `b` en utilisant l'algorithme d'Euclide.
+
+**Exemple** :
+```python
+pgcd(10, 4) retourne 2
+```
+
+**Rappel** : PGCD(a, b) = PGCD(b, a mod b)
+
+<InteractiveBlock
+  id="ex5-pgcd"
+  title="Votre code : pgcd.py"
+  type="code"
+  placeholder="# Fichier : pgcd.py
+
+def pgcd(a, b):
+    # Votre code ici
+    pass
+
+# Tests
+print(pgcd(10, 4))
+print(pgcd(48, 18))
+print(pgcd(17, 13))
+"
+/>
+
+<TeacherOnly title="Corrigés Exercices 4 et 5">
+
+## Exercice 4 : Factorielle
+
+```python
+# Fichier : factorielle.py
+def fac(n):
+    if n == 0:  # Cas particulier
+        return 1
+    produit = 1
+    for i in range(1, n + 1):  # Boucle pour multiplier les nombres
+        produit *= i
+    return produit
+
+# Exemple d'utilisation
+n = int(input("Entrez un nombre : "))
+print(f"Factorielle de {n} = {fac(n)}")
+```
+
+**Explications** :
+1. Une fonction `fac(n)` est définie
+2. Cas particulier : 0! = 1
+3. La boucle `for` multiplie chaque nombre jusqu'à `n`
+4. Le résultat est retourné
+
+**Barème (4 points)** :
+- Définition de la fonction : 0.5 point
+- Cas particulier n=0 : 1 point
+- Boucle correcte : 1.5 point
+- Return et tests : 1 point
+
+---
+
+## Exercice 5 : PGCD
+
+```python
+# Fichier : pgcd.py
+def pgcd(a, b):
+    while b != 0:  # Boucle jusqu'à ce que b devienne 0
+        a, b = b, a % b  # Algorithme d'Euclide
+    return a
+
+# Exemple d'utilisation
+a = int(input("Entrez a : "))
+b = int(input("Entrez b : "))
+print(f"PGCD({a}, {b}) = {pgcd(a, b)}")
+```
+
+**Explications** :
+1. Utilise l'algorithme d'Euclide
+2. On échange `a` et `b` jusqu'à ce que `b` soit 0
+3. Le PGCD est alors la dernière valeur de `a`
+
+**Barème (4 points)** :
+- Définition de la fonction : 0.5 point
+- Boucle while correcte : 1.5 point
+- Algorithme d'Euclide (échange) : 1.5 point
+- Return et tests : 0.5 point
+
+</TeacherOnly>
+
+## 4. Conditions et Boucles
+
+### Exercice 6 : Pair ou Impair (3 points)
+
+Demander un nombre à l'utilisateur et afficher s'il est pair ou impair.
+
+<InteractiveBlock
+  id="ex6-parite"
+  title="Votre code : pair_ou_impair.py"
+  type="code"
+  placeholder="# Fichier : pair_ou_impair.py
+
+# Lecture du nombre
+
+
+# Test de parité
+
+
+# Affichage
+
+
+"
+/>
+
+### Exercice 7 : Maximum de deux nombres (4 points)
+
+Écrire un script qui affiche le plus grand de deux nombres saisis au clavier.
+
+<InteractiveBlock
+  id="ex7-maximum"
+  title="Votre code : max_deux_nombres.py"
+  type="code"
+  placeholder="# Fichier : max_deux_nombres.py
+
+# Lecture des deux nombres
+
+
+# Détermination du maximum
+
+
+# Affichage
+
+
+"
+/>
+
+<TeacherOnly title="Corrigés Exercices 6 et 7">
+
+## Exercice 6 : Pair ou Impair
+
+```python
+# Fichier : pair_ou_impair.py
+n = int(input("Entrez un nombre : "))
+if n % 2 == 0:  # Vérifie si le reste de la division par 2 est 0
+    print(f"{n} est pair.")
+else:
+    print(f"{n} est impair.")
+```
+
+**Explications** :
+1. `n % 2` vérifie si `n` est divisible par 2
+2. Si oui, il est pair, sinon impair
+
+**Barème (3 points)** :
+- Lecture de l'entrée : 0.5 point
+- Test modulo correct : 1.5 point
+- Affichage conditionnel : 1 point
+
+---
+
+## Exercice 7 : Maximum de deux nombres
+
+```python
+# Fichier : max_deux_nombres.py
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+maxi = a if a > b else b  # Opérateur ternaire
+print(f"Le maximum entre {a} et {b} est {maxi}.")
+```
+
+**Alternative avec if/else classique** :
+```python
+a = int(input("Entrez le premier nombre : "))
+b = int(input("Entrez le deuxième nombre : "))
+if a > b:
+    maxi = a
+else:
+    maxi = b
+print(f"Le maximum entre {a} et {b} est {maxi}.")
+```
+
+**Explications** :
+1. Compare les deux nombres avec l'opérateur ternaire ou if/else
+2. Affiche le plus grand nombre
+
+**Barème (4 points)** :
+- Lecture des deux entrées : 1 point
+- Comparaison correcte : 1.5 point
+- Affichage formaté : 1.5 point
+
+</TeacherOnly>
+
+## Barème global (sur 20)
+
+- Exercice 1 : 1 point
+- Exercice 2 : 1 point
+- Exercice 3 : 3 points
+- Exercice 4 : 4 points
+- Exercice 5 : 4 points
+- Exercice 6 : 3 points
+- Exercice 7 : 4 points
+
+**Total : 20 points**
+
+## Conseils finaux
+
+- Testez vos codes avec plusieurs exemples
+- Ajoutez des commentaires pour expliquer chaque partie
+- Sauvegardez vos fichiers avec les noms demandés
+- Respectez les conventions de nommage Python (PEP 8)
