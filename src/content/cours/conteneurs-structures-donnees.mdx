@@ -1,0 +1,457 @@
+---
+title: "Conteneurs et structures de données"
+level: ["BTS CIEL", "BTS SIO"]
+type: "cours"
+objectifs:
+  - "Maîtriser les listes, tuples, dictionnaires et ensembles"
+  - "Comprendre les différences entre conteneurs mutables et immutables"
+  - "Utiliser le slicing efficacement"
+  - "Choisir le conteneur adapté à chaque situation"
+prerequis:
+  - "Variables et types de base en Python"
+  - "Boucles et conditions"
+duree_estimee: "3h00"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["conteneurs", "listes", "tuples", "dictionnaires", "ensembles"]
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## 1. Introduction aux Conteneurs
+
+### 1.1 Définition et Utilité
+
+Les conteneurs en Python sont comme des boîtes qui permettent de ranger et d'organiser nos données. Imaginez :
+- Un panier de courses (liste)
+- Un dictionnaire français-anglais (dictionnaire)
+- Les coordonnées GPS d'un lieu (tuple)
+
+En Python, on distingue deux grandes catégories de types de données :
+- **Types élémentaires** (int, float, bool...) : comme des briques de base
+- **Conteneurs** (containers) : comme des boîtes qui organisent ces briques
+
+### 1.2 Vue d'ensemble
+
+| Type | Mutable | Ordonné | Indexé | Exemple d'utilisation |
+|------|---------|---------|--------|----------------------|
+| Liste (list) | ✅ | ✅ | ✅ | Liste de courses |
+| Tuple | ❌ | ✅ | ✅ | Coordonnées (x,y) |
+| Chaîne (str) | ❌ | ✅ | ✅ | Nom d'utilisateur |
+| Dictionnaire (dict) | ✅ | ❌ | ✅* | Annuaire téléphonique |
+| Ensemble (set) | ✅ | ❌ | ❌ | Liste unique d'emails |
+
+*indexé par clés
+
+### 1.3 Caractéristiques importantes
+
+**Itérable** : Comme un livre qu'on peut lire page par page  
+**Ordonné** : Comme les numéros de pages d'un livre  
+**Indexé** : Comme les numéros des maisons dans une rue  
+**Mutable/Immutable** : Comme un document Word (mutable) vs PDF (immutable)
+
+<InteractiveBlock
+  id="comprehension-conteneurs"
+  title="À vous de jouer : Classification"
+  type="qcm"
+  question="Quel conteneur est immutable (non modifiable) ?"
+  options={[
+    "Liste (list)",
+    "Tuple",
+    "Dictionnaire (dict)",
+    "Ensemble (set)"
+  ]}
+/>
+
+## 2. Les Listes (list)
+
+### 2.1 Création et manipulation
+
+```python
+# Création
+courses = ['pain', 'lait', 'œufs']
+nombres = [1, 2, 3, 4, 5]
+mixte = [1, 'deux', 3.0, True]  # Types différents possible
+
+# Ajout d'éléments
+courses.append('beurre')     # À la fin
+courses.insert(0, 'fruits')  # Au début
+courses.extend(['eau', 'sucre'])  # Plusieurs éléments
+
+# Suppression
+courses.remove('lait')       # Par valeur
+del courses[0]              # Par position
+element = courses.pop()      # Retire et retourne le dernier
+```
+
+### 2.2 Accès aux éléments
+
+```python
+fruits = ['pomme', 'banane', 'orange', 'kiwi']
+
+# Indexation
+print(fruits[0])    # 'pomme' (premier)
+print(fruits[-1])   # 'kiwi' (dernier)
+print(fruits[-2])   # 'orange' (avant-dernier)
+
+# Slicing (découpage)
+print(fruits[1:3])   # ['banane', 'orange']
+print(fruits[:2])    # ['pomme', 'banane']
+print(fruits[2:])    # ['orange', 'kiwi']
+print(fruits[::2])   # ['pomme', 'orange'] (un sur deux)
+```
+
+### 2.3 Méthodes utiles
+
+```python
+nombres = [3, 1, 4, 1, 5, 9, 2, 6]
+
+# Tri et inversion
+nombres.sort()           # Trie sur place
+nombres_tries = sorted(nombres)  # Retourne une nouvelle liste triée
+nombres.reverse()        # Inverse sur place
+
+# Recherche
+print(nombres.index(5))  # Position de 5
+print(nombres.count(1))  # Nombre d'occurrences de 1
+
+# Longueur
+print(len(nombres))      # Nombre d'éléments
+```
+
+<InteractiveBlock
+  id="manipulation-listes"
+  title="À vous de jouer : Manipulation de listes"
+  type="code"
+  question="Créez une liste de vos 3 films préférés, ajoutez-en un 4ème, puis affichez le premier et le dernier."
+  placeholder="# Votre liste de films
+films = 
+
+# Ajout d'un film
+
+
+# Affichage
+
+
+"
+/>
+
+## 3. Les Tuples
+
+### 3.1 Caractéristiques
+
+Les tuples sont **immutables** : une fois créés, on ne peut pas les modifier.
+
+```python
+# Création
+coordonnees = (48.8566, 2.3522)  # Paris
+dimensions = (1920, 1080)
+
+# Un seul élément : attention à la virgule !
+singleton = (42,)  # Tuple avec un élément
+pas_tuple = (42)   # Juste un int entre parenthèses
+
+# Déballage (unpacking)
+x, y = coordonnees
+print(f"Latitude: {x}, Longitude: {y}")
+```
+
+### 3.2 Pourquoi utiliser des tuples ?
+
+1. **Protection des données** : Garantit qu'elles ne seront pas modifiées
+2. **Performance** : Plus rapide que les listes
+3. **Clés de dictionnaire** : Peuvent être utilisés comme clés (pas les listes)
+
+```python
+# Tuple comme clé de dictionnaire
+positions = {
+    (0, 0): 'origine',
+    (1, 0): 'droite',
+    (0, 1): 'haut'
+}
+
+# ❌ Erreur si on tente de modifier
+coordonnees[0] = 50  # TypeError!
+```
+
+<InteractiveBlock
+  id="tuples-practice"
+  title="À vous de jouer : Tuples"
+  type="code"
+  question="Créez un tuple avec votre nom, prénom et âge, puis déballez-le dans 3 variables."
+  placeholder="# Votre tuple
+infos = 
+
+# Déballage
+
+
+# Affichage
+
+"
+/>
+
+## 4. Les Dictionnaires (dict)
+
+### 4.1 Structure clé-valeur
+
+```python
+# Création
+etudiant = {
+    'nom': 'Dupont',
+    'prenom': 'Alice',
+    'age': 20,
+    'notes': [15, 18, 16]
+}
+
+# Accès aux valeurs
+print(etudiant['nom'])              # 'Dupont'
+print(etudiant.get('email', 'N/A')) # 'N/A' si clé absente
+
+# Ajout/Modification
+etudiant['email'] = 'alice@mail.com'
+etudiant['age'] = 21
+
+# Suppression
+del etudiant['notes']
+email = etudiant.pop('email')  # Retire et retourne la valeur
+```
+
+### 4.2 Parcourir un dictionnaire
+
+```python
+contacts = {
+    'Alice': '0601020304',
+    'Bob': '0605060708',
+    'Charlie': '0609101112'
+}
+
+# Parcourir les clés
+for nom in contacts:
+    print(nom)
+
+# Parcourir les valeurs
+for telephone in contacts.values():
+    print(telephone)
+
+# Parcourir clés et valeurs
+for nom, tel in contacts.items():
+    print(f"{nom}: {tel}")
+```
+
+### 4.3 Méthodes utiles
+
+```python
+# Vérifier l'existence d'une clé
+if 'Alice' in contacts:
+    print("Alice est dans les contacts")
+
+# Obtenir toutes les clés/valeurs
+cles = list(contacts.keys())
+valeurs = list(contacts.values())
+
+# Fusionner des dictionnaires (Python 3.9+)
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'c': 3, 'd': 4}
+fusion = dict1 | dict2
+```
+
+<InteractiveBlock
+  id="dictionnaires-practice"
+  title="À vous de jouer : Dictionnaire d'un livre"
+  type="code"
+  question="Créez un dictionnaire pour un livre avec titre, auteur, année et nombre de pages. Affichez tous les détails."
+  placeholder="# Votre dictionnaire livre
+livre = {
+    
+}
+
+# Affichage des détails
+
+
+"
+/>
+
+## 5. Les Ensembles (set)
+
+### 5.1 Caractéristiques
+
+Les ensembles contiennent des éléments **uniques** et **non ordonnés**.
+
+```python
+# Création
+nombres = {1, 2, 3, 4, 5}
+vide = set()  # Ensemble vide (pas {} qui crée un dict)
+
+# Ajout
+nombres.add(6)
+nombres.update([7, 8, 9])
+
+# Suppression
+nombres.remove(1)     # Erreur si absent
+nombres.discard(1)    # Pas d'erreur si absent
+
+# Éliminer les doublons
+liste_avec_doublons = [1, 2, 2, 3, 3, 3, 4]
+uniques = set(liste_avec_doublons)  # {1, 2, 3, 4}
+```
+
+### 5.2 Opérations ensemblistes
+
+```python
+A = {1, 2, 3, 4, 5}
+B = {4, 5, 6, 7, 8}
+
+# Union
+print(A | B)  # {1, 2, 3, 4, 5, 6, 7, 8}
+
+# Intersection
+print(A & B)  # {4, 5}
+
+# Différence
+print(A - B)  # {1, 2, 3}
+
+# Différence symétrique
+print(A ^ B)  # {1, 2, 3, 6, 7, 8}
+```
+
+<InteractiveBlock
+  id="ensembles-practice"
+  title="À vous de jouer : Ensembles"
+  type="code"
+  question="Créez deux ensembles d'étudiants : ceux qui font Python et ceux qui font Java. Trouvez ceux qui font les deux."
+  placeholder="# Vos ensembles
+python_students = {'Alice', 'Bob', 'Charlie'}
+java_students = {'Bob', 'David', 'Eve'}
+
+# Intersection (les deux langages)
+
+
+"
+/>
+
+## 6. Le Slicing en détail
+
+### 6.1 Syntaxe générale
+
+```
+sequence[start:stop:step]
+```
+
+- **start** : Indice de début (inclus)
+- **stop** : Indice de fin (exclus)
+- **step** : Pas d'itération
+
+### 6.2 Exemples pratiques
+
+```python
+lettres = ['a', 'b', 'c', 'd', 'e', 'f']
+
+# Basique
+print(lettres[1:4])    # ['b', 'c', 'd']
+
+# Omissions
+print(lettres[:3])     # ['a', 'b', 'c'] (début à 0)
+print(lettres[3:])     # ['d', 'e', 'f'] (jusqu'à la fin)
+print(lettres[:])      # ['a', 'b', 'c', 'd', 'e', 'f'] (copie)
+
+# Pas (step)
+print(lettres[::2])    # ['a', 'c', 'e'] (un sur deux)
+print(lettres[1::2])   # ['b', 'd', 'f'] (départ à 1, un sur deux)
+
+# Inversion
+print(lettres[::-1])   # ['f', 'e', 'd', 'c', 'b', 'a']
+
+# Index négatifs
+print(lettres[-3:])    # ['d', 'e', 'f'] (3 derniers)
+print(lettres[:-2])    # ['a', 'b', 'c', 'd'] (sauf 2 derniers)
+```
+
+<InteractiveBlock
+  id="slicing-practice"
+  title="À vous de jouer : Slicing"
+  type="code"
+  question="Avec la liste [0,1,2,3,4,5,6,7,8,9], obtenez : les éléments pairs, les 5 premiers, la liste inversée"
+  placeholder="nombres = list(range(10))
+
+# Éléments pairs
+
+
+# 5 premiers
+
+
+# Liste inversée
+
+
+"
+/>
+
+## 7. Choisir le bon conteneur
+
+### 7.1 Arbre de décision
+
+```
+Besoin d'associer clés → valeurs ?
+│
+├─ OUI → Dictionnaire (dict)
+│
+└─ NON → Les données doivent être uniques ?
+    │
+    ├─ OUI → Ensemble (set)
+    │
+    └─ NON → Les données doivent être modifiables ?
+        │
+        ├─ OUI → Liste (list)
+        │
+        └─ NON → Tuple
+```
+
+### 7.2 Exemples pratiques
+
+| Besoin | Conteneur | Exemple |
+|--------|-----------|---------|
+| Liste de courses modifiable | `list` | `['pain', 'lait', 'œufs']` |
+| Coordonnées GPS fixes | `tuple` | `(48.8566, 2.3522)` |
+| Annuaire téléphonique | `dict` | `{'Alice': '0601...'}` |
+| Liste d'emails uniques | `set` | `{'a@mail.com', 'b@mail.com'}` |
+
+## 8. Résumé
+
+### Points clés
+
+- **Listes** : Mutables, ordonnées, indexées → Pour des collections modifiables
+- **Tuples** : Immutables, ordonnés, indexés → Pour des données fixes
+- **Dictionnaires** : Mutables, clé-valeur → Pour des associations
+- **Ensembles** : Mutables, uniques, non ordonnés → Pour éliminer doublons
+
+### Bonnes pratiques
+
+1. Privilégier les tuples quand les données ne changent pas
+2. Utiliser les ensembles pour éliminer les doublons
+3. Choisir les dictionnaires pour des recherches rapides par clé
+4. Comprendre le slicing pour manipuler efficacement les séquences
+
+<TeacherOnly title="Notes pédagogiques">
+
+## Points d'attention
+
+- Bien insister sur la différence mutable/immutable
+- Montrer visuellement le slicing avec des diagrammes
+- Expliquer pourquoi `(42)` n'est pas un tuple mais `(42,)` oui
+- Démontrer les performances des différents conteneurs
+
+## Exercices supplémentaires suggérés
+
+1. Créer un système de gestion de bibliothèque avec dictionnaires
+2. Manipuler des listes de listes (matrices)
+3. Utiliser les ensembles pour comparer des données
+4. Exercices avancés de slicing
+
+## Erreurs courantes
+
+- Confusion entre `dict['key']` et `dict.get('key')`
+- Oubli de la virgule pour les tuples à un élément
+- Tentative de modifier un tuple
+- Utilisation de `{}` au lieu de `set()` pour créer un ensemble vide
+
+</TeacherOnly>

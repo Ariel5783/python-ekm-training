@@ -1,0 +1,278 @@
+---
+title: "Manipulation de bits en Python"
+level: ["Bac Pro CIEL", "BTS CIEL"]
+type: "cours"
+objectifs:
+  - "Comprendre les opérations bit à bit"
+  - "Maîtriser les opérateurs &, |, ^, ~, et les décalages"
+  - "Appliquer les opérations binaires à des cas pratiques"
+prerequis:
+  - "Connaître la représentation binaire des nombres"
+  - "Bases de Python"
+duree_estimee: "2h00"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["bits", "binaire", "opérateurs", "décalage", "masques"]
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## Introduction
+
+Les opérations sur les bits sont fondamentales en programmation système et en électronique numérique. Python fournit des opérateurs permettant de manipuler directement les bits des nombres entiers.
+
+## Les opérateurs bit à bit
+
+### Opérateur AND (&)
+
+L'opérateur `&` effectue un ET logique bit à bit.
+
+```python
+# Exemple
+a = 12  # 1100 en binaire
+b = 10  # 1010 en binaire
+resultat = a & b  # 1000 en binaire = 8
+```
+
+**Règle** : Le bit résultant vaut 1 seulement si les deux bits sont à 1.
+
+### Opérateur OR (|)
+
+L'opérateur `|` effectue un OU logique bit à bit.
+
+```python
+a = 12  # 1100 en binaire
+b = 10  # 1010 en binaire
+resultat = a | b  # 1110 en binaire = 14
+```
+
+**Règle** : Le bit résultant vaut 1 si au moins un des deux bits est à 1.
+
+### Opérateur XOR (^)
+
+L'opérateur `^` effectue un OU EXCLUSIF bit à bit.
+
+```python
+a = 12  # 1100 en binaire
+b = 10  # 1010 en binaire
+resultat = a ^ b  # 0110 en binaire = 6
+```
+
+**Règle** : Le bit résultant vaut 1 si les deux bits sont différents.
+
+### Opérateur NOT (~)
+
+L'opérateur `~` inverse tous les bits (complément à 1).
+
+```python
+a = 12  # 00001100 en binaire
+resultat = ~a  # 11110011 en binaire = -13 (complément à 2)
+```
+
+<InteractiveBlock
+  id="operations-logiques"
+  title="À vous de jouer : Opérations logiques"
+  type="code"
+  question="Calculez et affichez le résultat de ces opérations : 1 & 2, 1 | 2, 1 ^ 2"
+  placeholder="# Effectuez les opérations
+a = 1
+b = 2
+
+# Calculs
+
+
+# Affichage
+"
+/>
+
+## Les décalages binaires
+
+### Décalage à gauche `<<`
+
+Le décalage à gauche multiplie le nombre par 2^n.
+
+```python
+x = 5     # 0101 en binaire
+y = x << 1  # 1010 en binaire = 10
+z = x << 2  # 10100 en binaire = 20
+```
+
+### Décalage à droite `>>`
+
+Le décalage à droite divise le nombre par 2^n (division entière).
+
+```python
+x = 20    # 10100 en binaire
+y = x >> 1  # 01010 en binaire = 10
+z = x >> 2  # 00101 en binaire = 5
+```
+
+<InteractiveBlock
+  id="decalages"
+  title="À vous de jouer : Décalages binaires"
+  type="code"
+  question="Testez les décalages binaires sur le nombre 2"
+  placeholder="# Décalages
+nombre = 2
+
+# Décalage à droite
+
+
+# Décalages à gauche
+
+
+# Affichage
+"
+/>
+
+## Applications pratiques
+
+### 1. Vérifier si un nombre est pair ou impair
+
+```python
+def est_pair(n):
+    return (n & 1) == 0
+
+# Test
+print(est_pair(4))  # True
+print(est_pair(7))  # False
+```
+
+**Explication** : Le bit de poids faible (LSB) vaut 0 pour les pairs, 1 pour les impairs.
+
+### 2. Échanger deux variables sans variable temporaire
+
+```python
+a = 5
+b = 10
+
+a = a ^ b
+b = a ^ b
+a = a ^ b
+
+print(f"a = {a}, b = {b}")  # a = 10, b = 5
+```
+
+### 3. Masques de bits (flags)
+
+```python
+# Définition des permissions
+LECTURE = 1      # 0001
+ECRITURE = 2     # 0010
+EXECUTION = 4    # 0100
+ADMIN = 8        # 1000
+
+# Attribution de permissions
+permissions = LECTURE | ECRITURE  # 0011
+
+# Vérifier une permission
+if permissions & LECTURE:
+    print("Lecture autorisée")
+
+# Ajouter une permission
+permissions |= EXECUTION  # 0111
+
+# Retirer une permission
+permissions &= ~ECRITURE  # 0101
+```
+
+<InteractiveBlock
+  id="application-parite"
+  title="À vous de jouer : Fonction de parité"
+  type="code"
+  question="Créez une fonction qui vérifie si un nombre est pair en utilisant l'opérateur &"
+  placeholder="def est_pair(n):
+    # Votre code ici
+    pass
+
+# Tests
+print(est_pair(4))
+print(est_pair(7))
+print(est_pair(0))
+"
+/>
+
+## Tableau récapitulatif
+
+| Opérateur | Nom | Exemple | Résultat |
+|-----------|-----|---------|----------|
+| & | AND | 12 & 10 | 8 |
+| \| | OR | 12 \| 10 | 14 |
+| ^ | XOR | 12 ^ 10 | 6 |
+| ~ | NOT | ~12 | -13 |
+| `<<` | Décalage gauche | 5 `<<` 2 | 20 |
+| `>>` | Décalage droite | 20 `>>` 2 | 5 |
+
+## Représentation binaire en Python
+
+Python fournit des fonctions pour travailler avec les représentations binaires :
+
+```python
+# Convertir en binaire (chaîne)
+print(bin(12))  # '0b1100'
+
+# Convertir une chaîne binaire en entier
+print(int('1100', 2))  # 12
+
+# Nombre de bits nécessaires
+print(12.bit_length())  # 4
+```
+
+<InteractiveBlock
+  id="conversions-binaires"
+  title="À vous de jouer : Conversions"
+  type="code"
+  question="Convertissez le nombre 42 en binaire, puis reconvertissez '10101' en décimal"
+  placeholder="# Conversion décimal → binaire
+nombre = 42
+binaire = 
+
+# Conversion binaire → décimal
+chaine_binaire = '10101'
+decimal = 
+
+# Affichage
+"
+/>
+
+## Résumé
+
+Les opérations bit à bit sont essentielles pour :
+- L'optimisation des performances
+- La manipulation de flags et options
+- Le traitement d'image et de données
+- La programmation système et réseau
+- L'électronique numérique
+
+**Points clés** :
+- `&` : ET logique (masquage)
+- `|` : OU logique (activation)
+- `^` : XOR (inversion sélective)
+- `~` : NOT (complément)
+- Décalage gauche : Multiplication par 2^n
+- Décalage droite : Division par 2^n
+
+<TeacherOnly title="Notes pédagogiques">
+
+## Points d'attention
+
+- Bien expliquer la représentation binaire avant les opérations
+- Montrer des exemples visuels avec les bits
+- Insister sur la différence entre opérateurs logiques (`and`, `or`) et bit à bit (`&`, `|`)
+- Expliquer le complément à 2 pour l'opérateur `~`
+
+## Exercices supplémentaires suggérés
+
+1. Créer une fonction qui compte le nombre de bits à 1 dans un nombre
+2. Implémenter un système de permissions avec masques
+3. Créer une fonction qui inverse les bits d'un nombre
+4. Utiliser XOR pour chiffrer/déchiffrer un message simple
+
+## Difficultés courantes
+
+- Confusion entre `&` et `and`, `|` et `or`
+- Incompréhension du complément à 2 pour `~`
+- Oubli que les décalages sont des divisions/multiplications par puissances de 2
+
+</TeacherOnly>

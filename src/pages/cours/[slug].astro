@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const coursEntries = await getCollection('cours');
+  return coursEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout title={entry.data.title}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- En-tête du cours -->
+    <div class="mb-8">
+      <a 
+        href="/cours" 
+        class="inline-flex items-center text-cyan-600 hover:text-cyan-700 mb-4"
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Retour aux cours
+      </a>
+      
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">
+        {entry.data.title}
+      </h1>
+      
+      {entry.data.description && (
+        <p class="text-xl text-gray-600 mb-6">
+          {entry.data.description}
+        </p>
+      )}
+      
+      <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+        {entry.data.duration && (
+          <div class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {entry.data.duration}
+          </div>
+        )}
+        
+        {entry.data.difficulty && (
+          <div class="flex items-center">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            {entry.data.difficulty}
+          </div>
+        )}
+      </div>
+      
+      {entry.data.tags && entry.data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-4">
+          {entry.data.tags.map(tag => (
+            <span class="px-3 py-1 bg-cyan-100 text-cyan-800 text-sm rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <!-- Contenu du cours -->
+    <article class="prose prose-lg prose-slate max-w-none
+      prose-headings:text-slate-900 
+      prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-6
+      prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-4
+      prose-p:text-gray-700 prose-p:leading-relaxed
+      prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:text-cyan-700
+      prose-strong:text-slate-900 prose-strong:font-semibold
+      prose-code:text-cyan-600 prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+      prose-pre:bg-slate-900 prose-pre:text-gray-100
+      prose-ul:list-disc prose-ul:ml-6
+      prose-ol:list-decimal prose-ol:ml-6
+      prose-li:text-gray-700
+      prose-blockquote:border-l-4 prose-blockquote:border-cyan-500 prose-blockquote:bg-cyan-50 prose-blockquote:p-4
+      prose-table:border-collapse
+      prose-th:bg-slate-100 prose-th:p-3 prose-th:text-left
+      prose-td:border prose-td:border-slate-300 prose-td:p-3
+    ">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>

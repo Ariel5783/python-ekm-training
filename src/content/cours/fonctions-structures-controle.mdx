@@ -1,0 +1,560 @@
+---
+title: "Fonctions et structures de contrôle"
+level: ["Bac Pro CIEL", "BTS CIEL", "BTS SIO"]
+type: "cours"
+objectifs:
+  - "Maîtriser les structures conditionnelles"
+  - "Utiliser les boucles for et while"
+  - "Créer et utiliser des fonctions"
+  - "Comprendre la portée des variables"
+prerequis:
+  - "Variables et types de données"
+  - "Opérateurs de base"
+duree_estimee: "3h00"
+auteur: "Eric MORMIN"
+updated: "2025-12-14"
+mots_cles: ["fonctions", "if", "for", "while", "boucles", "conditions"]
+---
+
+import InteractiveBlock from '../../components/InteractiveBlock.astro';
+import TeacherOnly from '../../components/TeacherOnly.astro';
+
+## 1. Structures conditionnelles
+
+### 1.1 L'instruction if
+
+La structure `if` permet d'exécuter du code conditionnellement.
+
+```python
+age = 18
+
+if age >= 18:
+    print("Vous êtes majeur")
+```
+
+### 1.2 if...else
+
+```python
+age = 16
+
+if age >= 18:
+    print("Vous êtes majeur")
+else:
+    print("Vous êtes mineur")
+```
+
+### 1.3 if...elif...else
+
+Pour tester plusieurs conditions :
+
+```python
+note = 15
+
+if note >= 16:
+    print("Très bien")
+elif note >= 14:
+    print("Bien")
+elif note >= 12:
+    print("Assez bien")
+elif note >= 10:
+    print("Passable")
+else:
+    print("Insuffisant")
+```
+
+### 1.4 Opérateurs de comparaison
+
+| Opérateur | Signification |
+|-----------|---------------|
+| `==` | Égal à |
+| `!=` | Différent de |
+| `<` | Inférieur à |
+| `<=` | Inférieur ou égal |
+| `>` | Supérieur à |
+| `>=` | Supérieur ou égal |
+
+### 1.5 Opérateurs logiques
+
+```python
+age = 20
+permis = True
+
+# AND : Les deux conditions doivent être vraies
+if age >= 18 and permis:
+    print("Vous pouvez conduire")
+
+# OR : Au moins une condition doit être vraie
+if age < 18 or not permis:
+    print("Vous ne pouvez pas conduire")
+
+# NOT : Inverse le résultat
+if not (age < 18):
+    print("Vous êtes majeur")
+```
+
+<InteractiveBlock
+  id="conditions"
+  title="À vous de jouer : Conditions"
+  type="code"
+  question="Créez un programme qui demande une température et affiche 'Chaud' si > 25, 'Doux' si entre 15 et 25, 'Froid' sinon"
+  placeholder="temperature = float(input('Température : '))
+
+# Votre code ici
+
+
+"
+/>
+
+## 2. Les boucles
+
+### 2.1 Boucle for
+
+La boucle `for` permet de parcourir une séquence.
+
+```python
+# Parcourir une liste
+fruits = ["pomme", "banane", "orange"]
+for fruit in fruits:
+    print(fruit)
+
+# Parcourir une chaîne
+for lettre in "Python":
+    print(lettre)
+
+# Utiliser range()
+for i in range(5):  # 0, 1, 2, 3, 4
+    print(i)
+
+# range avec début et fin
+for i in range(2, 8):  # 2, 3, 4, 5, 6, 7
+    print(i)
+
+# range avec pas
+for i in range(0, 10, 2):  # 0, 2, 4, 6, 8
+    print(i)
+```
+
+### 2.2 Boucle while
+
+La boucle `while` s'exécute tant qu'une condition est vraie.
+
+```python
+# Boucle simple
+compteur = 0
+while compteur < 5:
+    print(compteur)
+    compteur += 1
+
+# Boucle de saisie
+reponse = ""
+while reponse != "oui":
+    reponse = input("Voulez-vous continuer ? (oui/non) ")
+```
+
+⚠️ **Attention aux boucles infinies !**
+
+```python
+# ❌ Boucle infinie - À éviter !
+# while True:
+#     print("Boucle infinie")
+
+# ✅ Avec condition de sortie
+while True:
+    choix = input("Tapez 'q' pour quitter : ")
+    if choix == 'q':
+        break
+```
+
+### 2.3 break et continue
+
+```python
+# break : Sort de la boucle
+for i in range(10):
+    if i == 5:
+        break  # Arrête la boucle
+    print(i)  # Affiche 0, 1, 2, 3, 4
+
+# continue : Passe à l'itération suivante
+for i in range(10):
+    if i % 2 == 0:
+        continue  # Saute les nombres pairs
+    print(i)  # Affiche 1, 3, 5, 7, 9
+```
+
+### 2.4 Boucles imbriquées
+
+```python
+# Table de multiplication
+for i in range(1, 6):
+    for j in range(1, 6):
+        print(f"{i} × {j} = {i*j}")
+    print()  # Ligne vide entre les tables
+```
+
+<InteractiveBlock
+  id="boucles"
+  title="À vous de jouer : Boucles"
+  type="code"
+  question="Créez une boucle qui affiche les nombres de 1 à 100, mais affiche 'Fizz' pour les multiples de 3, 'Buzz' pour les multiples de 5, et 'FizzBuzz' pour les multiples de 3 et 5"
+  placeholder="for i in range(1, 101):
+    # Votre code ici
+    pass
+"
+/>
+
+## 3. Les fonctions
+
+### 3.1 Définition d'une fonction
+
+Une fonction est un bloc de code réutilisable.
+
+```python
+def dire_bonjour():
+    """Affiche un message de bienvenue"""
+    print("Bonjour !")
+
+# Appel de la fonction
+dire_bonjour()  # Affiche : Bonjour !
+```
+
+### 3.2 Fonctions avec paramètres
+
+```python
+def dire_bonjour(nom):
+    """Salue une personne par son nom"""
+    print(f"Bonjour {nom} !")
+
+dire_bonjour("Alice")  # Bonjour Alice !
+dire_bonjour("Bob")    # Bonjour Bob !
+```
+
+### 3.3 Paramètres par défaut
+
+```python
+def saluer(nom, message="Bonjour"):
+    """Salue avec un message personnalisable"""
+    print(f"{message} {nom} !")
+
+saluer("Alice")                    # Bonjour Alice !
+saluer("Bob", "Bonsoir")          # Bonsoir Bob !
+saluer("Charlie", message="Salut") # Salut Charlie !
+```
+
+### 3.4 Valeur de retour
+
+```python
+def additionner(a, b):
+    """Retourne la somme de deux nombres"""
+    return a + b
+
+resultat = additionner(5, 3)
+print(resultat)  # 8
+
+# Retours multiples
+def calculer(a, b):
+    """Retourne plusieurs valeurs"""
+    somme = a + b
+    produit = a * b
+    return somme, produit
+
+s, p = calculer(4, 5)
+print(f"Somme: {s}, Produit: {p}")
+```
+
+### 3.5 Paramètres *args et **kwargs
+
+```python
+# *args : Nombre variable d'arguments positionnels
+def additionner_tout(*nombres):
+    """Additionne un nombre variable d'arguments"""
+    total = 0
+    for nombre in nombres:
+        total += nombre
+    return total
+
+print(additionner_tout(1, 2, 3))        # 6
+print(additionner_tout(1, 2, 3, 4, 5))  # 15
+
+# **kwargs : Nombre variable d'arguments nommés
+def afficher_infos(**infos):
+    """Affiche des informations sous forme clé=valeur"""
+    for cle, valeur in infos.items():
+        print(f"{cle}: {valeur}")
+
+afficher_infos(nom="Alice", age=25, ville="Paris")
+```
+
+<InteractiveBlock
+  id="fonctions"
+  title="À vous de jouer : Fonctions"
+  type="code"
+  question="Créez une fonction calculer_moyenne qui prend une liste de notes et retourne la moyenne"
+  placeholder="def calculer_moyenne(notes):
+    # Votre code ici
+    pass
+
+# Test
+notes_alice = [15, 18, 16, 14]
+print(f'Moyenne: {calculer_moyenne(notes_alice)}')
+"
+/>
+
+## 4. Portée des variables (Scope)
+
+### 4.1 Variables locales et globales
+
+```python
+# Variable globale
+x = 10
+
+def ma_fonction():
+    # Variable locale
+    y = 5
+    print(f"Dans la fonction : x={x}, y={y}")
+
+ma_fonction()
+print(f"Hors fonction : x={x}")
+# print(y)  # ❌ Erreur : y n'existe pas ici
+```
+
+### 4.2 Modifier une variable globale
+
+```python
+compteur = 0
+
+def incrementer():
+    global compteur  # Déclarer comme globale
+    compteur += 1
+
+incrementer()
+print(compteur)  # 1
+```
+
+### 4.3 Les 4 portées LEGB
+
+Python recherche les variables dans cet ordre :
+
+1. **L**ocal : Variables locales à la fonction
+2. **E**nclosing : Variables des fonctions englobantes
+3. **G**lobal : Variables globales du module
+4. **B**uilt-in : Noms prédéfinis de Python
+
+```python
+x = "global"
+
+def fonction_externe():
+    x = "enclosing"
+    
+    def fonction_interne():
+        x = "local"
+        print(x)  # local
+    
+    fonction_interne()
+    print(x)  # enclosing
+
+fonction_externe()
+print(x)  # global
+```
+
+## 5. Fonctions lambda
+
+Les fonctions lambda sont des fonctions anonymes courtes.
+
+```python
+# Fonction classique
+def carre(x):
+    return x ** 2
+
+# Équivalent lambda
+carre_lambda = lambda x: x ** 2
+
+print(carre(5))        # 25
+print(carre_lambda(5)) # 25
+
+# Lambda avec plusieurs paramètres
+addition = lambda a, b: a + b
+print(addition(3, 7))  # 10
+
+# Utilisation avec sorted()
+personnes = [
+    {"nom": "Alice", "age": 25},
+    {"nom": "Bob", "age": 30},
+    {"nom": "Charlie", "age": 20}
+]
+
+# Trier par âge
+personnes_triees = sorted(personnes, key=lambda p: p["age"])
+print(personnes_triees)
+```
+
+## 6. Fonctions utiles
+
+### 6.1 map()
+
+Applique une fonction à chaque élément.
+
+```python
+nombres = [1, 2, 3, 4, 5]
+
+# Doubler chaque nombre
+doubles = list(map(lambda x: x * 2, nombres))
+print(doubles)  # [2, 4, 6, 8, 10]
+```
+
+### 6.2 filter()
+
+Filtre les éléments selon une condition.
+
+```python
+nombres = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Garder seulement les pairs
+pairs = list(filter(lambda x: x % 2 == 0, nombres))
+print(pairs)  # [2, 4, 6, 8, 10]
+```
+
+### 6.3 reduce()
+
+Réduit une séquence à une seule valeur.
+
+```python
+from functools import reduce
+
+nombres = [1, 2, 3, 4, 5]
+
+# Calculer le produit
+produit = reduce(lambda x, y: x * y, nombres)
+print(produit)  # 120 (1*2*3*4*5)
+```
+
+## 7. Recursivité
+
+Une fonction peut s'appeler elle-même.
+
+```python
+def factorielle(n):
+    """Calcule n! de manière récursive"""
+    if n == 0 or n == 1:
+        return 1
+    return n * factorielle(n - 1)
+
+print(factorielle(5))  # 120
+
+# Fibonacci
+def fibonacci(n):
+    """Retourne le n-ième nombre de Fibonacci"""
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+print(fibonacci(7))  # 13
+```
+
+⚠️ **Attention** : La récursivité peut être lente et consommer de la mémoire.
+
+## 8. Bonnes pratiques
+
+### 8.1 Nommage
+
+✅ **Fonctions** : snake_case (`calculer_moyenne`)  
+✅ **Variables** : snake_case (`nombre_etudiants`)  
+✅ **Constantes** : MAJUSCULES (`PI = 3.14159`)
+
+### 8.2 Documentation
+
+```python
+def calculer_moyenne(notes):
+    """
+    Calcule la moyenne d'une liste de notes.
+    
+    Args:
+        notes (list): Liste des notes (entre 0 et 20)
+    
+    Returns:
+        float: La moyenne des notes
+    
+    Raises:
+        ValueError: Si la liste est vide
+    
+    Example:
+        >>> calculer_moyenne([15, 18, 16])
+        16.333...
+    """
+    if not notes:
+        raise ValueError("La liste ne peut pas être vide")
+    return sum(notes) / len(notes)
+```
+
+### 8.3 Principe DRY
+
+**Don't Repeat Yourself** : Ne vous répétez pas
+
+❌ **Mauvais** :
+```python
+# Code répétitif
+print(f"Alice: {(15 + 18 + 16) / 3}")
+print(f"Bob: {(12 + 14 + 13) / 3}")
+print(f"Charlie: {(17 + 19 + 18) / 3}")
+```
+
+✅ **Bon** :
+```python
+def afficher_moyenne(nom, notes):
+    moyenne = sum(notes) / len(notes)
+    print(f"{nom}: {moyenne}")
+
+afficher_moyenne("Alice", [15, 18, 16])
+afficher_moyenne("Bob", [12, 14, 13])
+afficher_moyenne("Charlie", [17, 19, 18])
+```
+
+## Résumé
+
+### Structures conditionnelles
+- `if`, `elif`, `else`
+- Opérateurs : `==`, `!=`, `<`, `>`, `and`, `or`, `not`
+
+### Boucles
+- `for` : Parcourir des séquences
+- `while` : Répéter tant qu'une condition est vraie
+- `break` : Sortir de la boucle
+- `continue` : Passer à l'itération suivante
+
+### Fonctions
+- `def` pour définir
+- `return` pour retourner une valeur
+- Paramètres par défaut
+- `*args` et `**kwargs`
+- Fonctions lambda
+
+### Concepts importants
+- Portée des variables (LEGB)
+- Récursivité
+- Fonctions de haut niveau (map, filter, reduce)
+
+<TeacherOnly title="Notes pédagogiques">
+
+## Points d'attention
+
+- **Indentation** : Crucial en Python (4 espaces recommandés)
+- **break vs continue** : Souvent source de confusion
+- **Portée des variables** : Bien expliquer global vs local
+- **Récursivité** : Toujours montrer le cas de base
+
+## Exercices suggérés
+
+1. Calculatrice avec menu et fonctions
+2. Jeu du plus ou moins avec boucles
+3. Fonction de validation d'email
+4. Tri de liste sans sorted()
+5. Suite de Fibonacci itérative vs récursive
+
+## Erreurs courantes
+
+- Oubli du `:` après if, for, while, def
+- Indentation incorrecte
+- Boucle infinie (oubli de l'incrémentation)
+- Confusion entre `=` (affectation) et `==` (comparaison)
+- Oubli du `return` dans les fonctions
+
+</TeacherOnly>

@@ -1,0 +1,94 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  level: string[];
+  type: 'cours' | 'exercices' | 'ressources';
+  duree?: string;
+  updated?: string;
+  objectifs?: string[];
+}
+
+const { title, slug, level, type, duree, updated, objectifs } = Astro.props;
+
+const typeColors = {
+  cours: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+  exercices: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+  ressources: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200',
+};
+
+const typeLabels = {
+  cours: 'Cours',
+  exercices: 'Exercices',
+  ressources: 'Ressource',
+};
+
+const basePath = type === 'cours' ? '/cours/' : type === 'exercices' ? '/exercices/' : '/ressources/';
+---
+
+<article class="card h-full flex flex-col">
+  <div class="p-6 flex-1 flex flex-col">
+    <!-- En-tête -->
+    <div class="flex items-start justify-between mb-3">
+      <span class={`badge ${typeColors[type]}`}>
+        {typeLabels[type]}
+      </span>
+      {duree && (
+        <span class="text-xs text-secondary-500 dark:text-secondary-400 flex items-center">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {duree}
+        </span>
+      )}
+    </div>
+
+    <!-- Titre -->
+    <h3 class="text-lg font-semibold text-secondary-900 dark:text-secondary-50 mb-3 line-clamp-2">
+      {title}
+    </h3>
+
+    <!-- Niveaux -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      {level.map((l) => (
+        <span class="badge badge-secondary text-xs">
+          {l}
+        </span>
+      ))}
+    </div>
+
+    <!-- Objectifs -->
+    {objectifs && objectifs.length > 0 && (
+      <div class="mb-4 flex-1">
+        <p class="text-xs font-medium text-secondary-700 dark:text-secondary-300 mb-2">Objectifs :</p>
+        <ul class="text-sm text-secondary-600 dark:text-secondary-400 space-y-1">
+          {objectifs.slice(0, 2).map((obj) => (
+            <li class="flex items-start">
+              <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span class="line-clamp-2">{obj}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- Date de mise à jour -->
+    {updated && (
+      <div class="text-xs text-secondary-500 dark:text-secondary-400 mb-4">
+        Mis à jour : {new Date(updated).toLocaleDateString('fr-FR')}
+      </div>
+    )}
+
+    <!-- Bouton -->
+    <div class="mt-auto">
+      <a
+        href={`${basePath}${slug}`}
+        class="btn-primary w-full"
+      >
+        Ouvrir
+      </a>
+    </div>
+  </div>
+</article>
