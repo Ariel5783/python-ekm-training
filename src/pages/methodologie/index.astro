@@ -2,23 +2,256 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Méthodologie — Python by EKM Conseils">
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <div class="max-w-5xl mx-auto">
-        <h1 class="text-5xl font-bold text-ekm-slate-900 mb-4">
-          Méthodologie d'apprentissage
-        </h1>
-        <p class="text-xl text-ekm-slate-600 mb-12">
-          Apprendre efficacement avec l'IA et les bonnes pratiques
-        </p>
-        
-        <div class="bg-ekm-slate-50 rounded-xl p-8 border border-ekm-slate-200">
-          <p class="text-ekm-slate-600">
-            Les ressources méthodologiques seront disponibles prochainement.
+<BaseLayout title="Méthodologie - Python by EKM Conseils">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- En-tête -->
+    <div class="mb-12">
+      <h1 class="text-4xl font-bold text-slate-900 mb-4">
+        Méthodologie d'apprentissage
+      </h1>
+      <p class="text-xl text-gray-600">
+        Conseils et bonnes pratiques pour réussir votre apprentissage de Python
+      </p>
+    </div>
+
+    <!-- Section 1: Conseils d'apprentissage -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">
+        Conseils pour bien apprendre Python
+      </h2>
+      
+      <div class="space-y-6">
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded-r-lg">
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">
+            1. Pratiquez régulièrement
+          </h3>
+          <p class="text-gray-700">
+            La programmation s'apprend en pratiquant. Consacrez au minimum 30 minutes par jour à coder, même pour de petits exercices. La régularité est plus importante que la durée.
+          </p>
+        </div>
+
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded-r-lg">
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">
+            2. Tapez le code vous-même
+          </h3>
+          <p class="text-gray-700">
+            Ne copiez-collez pas les exemples. Tapez chaque ligne de code pour développer votre mémoire musculaire et mieux comprendre la syntaxe. Les erreurs de frappe vous apprendront à debugger.
+          </p>
+        </div>
+
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded-r-lg">
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">
+            3. Lisez les messages d'erreur
+          </h3>
+          <p class="text-gray-700">
+            Les messages d'erreur sont vos amis. Apprenez à les lire attentivement : ils indiquent souvent la ligne problématique et le type d'erreur. Utilisez-les pour progresser.
+          </p>
+        </div>
+
+        <div class="bg-cyan-50 border-l-4 border-cyan-500 p-6 rounded-r-lg">
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">
+            4. Décomposez les problèmes
+          </h3>
+          <p class="text-gray-700">
+            Face à un problème complexe, divisez-le en sous-problèmes plus simples. Résolvez chaque partie séparément avant de les assembler. Cette approche est au cœur de la programmation.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Section 2: Méthodologie de travail -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">
+        Méthodologie de travail
+      </h2>
+
+      <div class="bg-white border-2 border-slate-200 rounded-xl p-8 mb-6">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-4">
+          Approche recommandée pour chaque exercice
+        </h3>
+        <ol class="space-y-4 text-gray-700">
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold mr-4">1</span>
+            <div>
+              <strong class="text-slate-900">Comprendre le problème</strong> : Lisez l'énoncé plusieurs fois. Identifiez les données d'entrée, le traitement attendu et le résultat à produire.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold mr-4">2</span>
+            <div>
+              <strong class="text-slate-900">Planifier sur papier</strong> : Avant de coder, esquissez votre solution sur papier. Écrivez les étapes en français, puis en pseudo-code.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold mr-4">3</span>
+            <div>
+              <strong class="text-slate-900">Coder progressivement</strong> : Implémentez votre solution étape par étape. Testez chaque partie avant de passer à la suivante.
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold mr-4">4</span>
+            <div>
+              <strong class="text-slate-900">Tester avec différents cas</strong> : Testez votre code avec plusieurs jeux de données, y compris des cas limites (liste vide, valeur nulle, etc.).
+            </div>
+          </li>
+          <li class="flex items-start">
+            <span class="flex-shrink-0 w-8 h-8 bg-cyan-500 text-white rounded-full flex items-center justify-center font-bold mr-4">5</span>
+            <div>
+              <strong class="text-slate-900">Améliorer et documenter</strong> : Une fois que ça fonctionne, optimisez votre code et ajoutez des commentaires pour expliquer votre logique.
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Section 3: Bonnes pratiques -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">
+        Bonnes pratiques de programmation
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-50 rounded-lg p-6 border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Nommage clair
+          </h3>
+          <p class="text-gray-700 text-sm">
+            Utilisez des noms de variables explicites : <code class="bg-slate-200 px-2 py-1 rounded text-cyan-600">nombre_etudiants</code> plutôt que <code class="bg-slate-200 px-2 py-1 rounded text-red-600">n</code>.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 rounded-lg p-6 border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Commentaires utiles
+          </h3>
+          <p class="text-gray-700 text-sm">
+            Commentez le "pourquoi", pas le "quoi". Expliquez votre raisonnement, pas ce que fait chaque ligne (le code le montre déjà).
+          </p>
+        </div>
+
+        <div class="bg-slate-50 rounded-lg p-6 border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Fonctions courtes
+          </h3>
+          <p class="text-gray-700 text-sm">
+            Une fonction doit faire une seule chose et la faire bien. Si elle dépasse 20 lignes, décomposez-la en sous-fonctions.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 rounded-lg p-6 border border-slate-200">
+          <h3 class="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            Tests systématiques
+          </h3>
+          <p class="text-gray-700 text-sm">
+            Testez toujours votre code avec plusieurs cas, y compris les cas limites (valeurs extrêmes, listes vides, etc.).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Organisation -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">
+        Organisation du travail
+      </h2>
+
+      <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl p-8 border-2 border-cyan-200">
+        <h3 class="text-2xl font-semibold text-slate-900 mb-6">
+          Parcours d'apprentissage recommandé
+        </h3>
+        
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-cyan-500 text-white rounded-lg flex items-center justify-center font-bold mr-4">1</div>
+            <div>
+              <h4 class="font-semibold text-slate-900 mb-1">Suivez les cours dans l'ordre</h4>
+              <p class="text-gray-700 text-sm">Chaque cours construit sur les connaissances du précédent. Respectez la progression proposée.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-cyan-500 text-white rounded-lg flex items-center justify-center font-bold mr-4">2</div>
+            <div>
+              <h4 class="font-semibold text-slate-900 mb-1">Faites les exercices associés</h4>
+              <p class="text-gray-700 text-sm">Après chaque cours, pratiquez avec les exercices correspondants pour ancrer vos connaissances.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-cyan-500 text-white rounded-lg flex items-center justify-center font-bold mr-4">3</div>
+            <div>
+              <h4 class="font-semibold text-slate-900 mb-1">Réalisez les projets</h4>
+              <p class="text-gray-700 text-sm">Une fois les bases acquises, attaquez-vous aux mini-projets pour intégrer tous les concepts ensemble.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 bg-cyan-500 text-white rounded-lg flex items-center justify-center font-bold mr-4">4</div>
+            <div>
+              <h4 class="font-semibold text-slate-900 mb-1">Créez vos propres projets</h4>
+              <p class="text-gray-700 text-sm">La meilleure façon d'apprendre est de créer quelque chose qui vous intéresse personnellement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Ressources -->
+    <section>
+      <h2 class="text-3xl font-bold text-slate-900 mb-6">
+        Ressources complémentaires
+      </h2>
+
+      <div class="bg-white border-2 border-slate-200 rounded-xl p-8">
+        <h3 class="text-xl font-semibold text-slate-900 mb-4">
+          Pour aller plus loin
+        </h3>
+        
+        <ul class="space-y-3 text-gray-700">
+          <li class="flex items-start">
+            <svg class="w-5 h-5 mr-3 mt-0.5 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+            </svg>
+            <span><strong>Documentation officielle Python</strong> : Référence complète et tutoriels (python.org)</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 mr-3 mt-0.5 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+            </svg>
+            <span><strong>PEP 8</strong> : Guide de style officiel pour écrire du code Python lisible</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 mr-3 mt-0.5 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+            </svg>
+            <span><strong>Stack Overflow</strong> : Communauté pour poser vos questions et trouver des solutions</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="w-5 h-5 mr-3 mt-0.5 text-cyan-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+            </svg>
+            <span><strong>GitHub</strong> : Explorez du code open-source pour apprendre de vrais projets</span>
+          </li>
+        </ul>
+
+        <div class="mt-8 pt-8 border-t-2 border-slate-200">
+          <p class="text-gray-700 italic">
+            💡 <strong>Conseil final</strong> : La programmation est un marathon, pas un sprint. Soyez patient avec vous-même, célébrez vos petites victoires, et n'ayez pas peur de faire des erreurs — c'est ainsi qu'on apprend le mieux !
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
 </BaseLayout>
