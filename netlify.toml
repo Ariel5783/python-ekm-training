@@ -14,15 +14,3 @@
     X-Frame-Options = "SAMEORIGIN"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-XSS-Protection = "1; mode=block"
-
-[[redirects]]
-  from = "/solutions/*"
-  to = "/404"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/pedagogie/*"
-  to = "/404"
-  status = 404
-  force = true
